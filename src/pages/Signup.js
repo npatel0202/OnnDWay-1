@@ -1,18 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, createRef, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   TextInput,
   Button,
   TouchableHighlight,
+  KeyboardAvoidingView,
   Image,
-  Alert,
 } from "react-native";
 import { Picker } from "@react-native-community/picker";
+import ValidationComponent from "react-native-form-validator";
 
-export default class SignUpView extends Component {
+export default class SignUpView extends ValidationComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,149 +24,152 @@ export default class SignUpView extends Component {
       ConfirmPassword: "",
       MobileNumber: "",
       PickerValue: "",
-      // rdata: ['Restaurant', 'Retailer'],
-      // checked: 0
+      error: "",
     };
   }
 
-  go = () => {
-    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (reg.test(this.state.email) === true) {
-      alert("valid");
-    } else {
-      alert("invalid email please try again");
-    }
-  };
-
-  onLogin() {
+  onSignup() {
     const { fullName, password, ConfirmPassword, MobileNumber } = this.state;
-
-    Alert.alert(
-      "Credentials",
-      `${fullName} + ${password} + ${ConfirmPassword} + ${MobileNumber}`
-    );
+    this.validate({
+      fullName: { minlength: 3, maxlength: 50, required: true },
+      email: { email: true, required: true },
+      password: { minlength: 6, maxLength: 12, required: true },
+      ConfirmPassword: { equalPassword: this.state.password, required: true },
+      MobileNumber: { numbers: true, required: true },
+    });
+    this.setState({ errors: this.getErrorMessages(", ") });
   }
 
-  // onClickListener = (viewId) => {
-  //   Alert.alert("Alert", "Button pressed "+viewId);
-  // }
-
   render() {
-    
     return (
-      <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <Image
-            style={styles.inputIcon}
-            source={{
-              uri: "https://png.icons8.com/male-user/ultraviolet/50/3498db",
-            }}
-          />
-          <TextInput
-            style={styles.inputs}
-            placeholder="Full name"
-            keyboardType="email-address"
-            underlineColorAndroid="transparent"
-            onChangeText={(fullName) => this.setState({ fullName })}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Image
-            style={styles.inputIcon}
-            source={{
-              uri: "https://png.icons8.com/message/ultraviolet/50/3498db",
-            }}
-          />
-          <TextInput
-            style={styles.inputs}
-            placeholder="Email"
-            keyboardType="email-address"
-            underlineColorAndroid="transparent"
-            onChangeText={(email) => this.setState({ email })}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Image
-            style={styles.inputIcon}
-            source={{
-              uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
-            }}
-          />
-          <TextInput
-            style={styles.inputs}
-            placeholder="Password"
-            secureTextEntry={true}
-            underlineColorAndroid="transparent"
-            onChangeText={(password) => this.setState({ password })}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Image
-            style={styles.inputIcon}
-            source={{
-              uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
-            }}
-          />
-          <TextInput
-            style={styles.inputs}
-            placeholder="Confirm Password"
-            secureTextEntry={true}
-            underlineColorAndroid="transparent"
-            onChangeText={(ConfirmPassword) =>
-              this.setState({ Confirmpassword })
-            }
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Image
-            style={styles.inputIcon}
-            source={{
-              uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
-            }}
-          />
-          <TextInput
-            style={styles.inputs}
-            placeholder="Mobile Number"
-            keyboardType="number-pad"
-            maxLength={11}
-            underlineColorAndroid="transparent"
-            onChangeText={(MobileNumber) => this.setState({ MobileNumber })}
-          />
-        </View>
-        
-          {/* <Picker
-            style={({ width: "80" }, { marginLeft: 45 })}
-            mode="dropdown"
-            selectedValue={this.state.PickerValue}
-            onValueChange={(itemValue) => {
-              this.setState({ PickerValue: itemValue });
-            }}
-          > */}
-            <Picker
-        selectedValue={this.state.PickerValue}
-        style={{ height: 50, width: 150 }}
-        onValueChange={(itemValue, itemIndex) => this.setState({PickerValue: itemValue})}
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{ flex: 1 }}
       >
-            {/* <Picker.Item label="Users" key="0" value="" /> */}
+        <View style={styles.container}>
+          <View style={styles.inputContainer}>
+            <Image
+              style={styles.inputIcon}
+              source={{
+                uri: "https://png.icons8.com/male-user/ultraviolet/50/3498db",
+              }}
+            />
+            <TextInput
+              style={styles.inputs}
+              placeholder="Full name"
+              keyboardType="email-address"
+              underlineColorAndroid="transparent"
+              onChangeText={(fullName) => this.setState({ fullName })}
+            />
+          </View>
 
+          {this.isFieldInError("fullName") &&
+            this.getErrorsInField("fullName").map((errorMessage) => (
+              <Text key={errorMessage}>{errorMessage}</Text>
+            ))}
+
+          <View style={styles.inputContainer}>
+            <Image
+              style={styles.inputIcon}
+              source={{
+                uri: "https://png.icons8.com/message/ultraviolet/50/3498db",
+              }}
+            />
+            <TextInput
+              style={styles.inputs}
+              placeholder="Email"
+              keyboardType="email-address"
+              underlineColorAndroid="transparent"
+              onChangeText={(email) => this.setState({ email })}
+            />
+          </View>
+          {this.isFieldInError("email") &&
+            this.getErrorsInField("email").map((errorMessage) => (
+              <Text key={errorMessage}>{errorMessage}</Text>
+            ))}
+
+          <View style={styles.inputContainer}>
+            <Image
+              style={styles.inputIcon}
+              source={{
+                uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
+              }}
+            />
+            <TextInput
+              style={styles.inputs}
+              placeholder="Password"
+              secureTextEntry={true}
+              underlineColorAndroid="transparent"
+              onChangeText={(password) => this.setState({ password })}
+            />
+          </View>
+          {this.isFieldInError("password") &&
+            this.getErrorsInField("password").map((errorMessage) => (
+              <Text key={errorMessage}>{errorMessage}</Text>
+            ))}
+
+          <View style={styles.inputContainer}>
+            <Image
+              style={styles.inputIcon}
+              source={{
+                uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
+              }}
+            />
+            <TextInput
+              style={styles.inputs}
+              placeholder="Confirm Password"
+              secureTextEntry={true}
+              underlineColorAndroid="transparent"
+              onChangeText={(ConfirmPassword) =>
+                this.setState({ ConfirmPassword })
+              }
+            />
+          </View>
+          {this.isFieldInError("ConfirmPassword") &&
+            this.getErrorsInField("ConfirmPassword").map((errorMessage) => (
+              <Text key={errorMessage}>{errorMessage}</Text>
+            ))}
+
+          <View style={styles.inputContainer}>
+            <Image
+              style={styles.inputIcon}
+              source={{
+                uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
+              }}
+            />
+            <TextInput
+              style={styles.inputs}
+              placeholder="Mobile Number"
+              keyboardType="number-pad"
+              maxLength={11}
+              underlineColorAndroid="transparent"
+              onChangeText={(MobileNumber) => this.setState({ MobileNumber })}
+            />
+          </View>
+          {this.isFieldInError("MobileNumber") &&
+            this.getErrorsInField("MobileNumber").map((errorMessage) => (
+              <Text key={errorMessage}>{errorMessage}</Text>
+            ))}
+
+          <Picker
+            selectedValue={this.state.PickerValue}
+            style={{ height: 50, width: 150 }}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({ PickerValue: itemValue })
+            }
+          >
             <Picker.Item label="Restaurant" key="1" value="Restaurant" />
 
             <Picker.Item label="Retailer" key="2" value="Retailer" />
           </Picker>
-        
-        <Button
-          title={"Signup"}
-          style={styles.input}
-          onPress={this.onLogin.bind(this)}
-        />
-        {/* 
-        <TouchableHighlight style={[styles.buttonContainer, styles.signupButton]}  onPress={this.onLogin.bind(t)}>
-          <Text style={styles.signUpText}>Sign up</Text>
-        </TouchableHighlight>  */}
-      </View>
+
+          <Button
+            title="Signup"
+            style={styles.input}
+            onPress={this.onSignup.bind(this)}
+          />
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -172,7 +177,8 @@ export default class SignUpView extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: 'flex-start',
+    paddingTop: 60,
     alignItems: "center",
     backgroundColor: "#B0E0E6",
   },
