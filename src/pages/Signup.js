@@ -13,6 +13,8 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-community/picker";
 import ValidationComponent from "react-native-form-validator";
+import { Router, Switch, Route } from "react-router-dom";
+
 
 export default class SignUpView extends ValidationComponent {
   constructor(props) {
@@ -35,12 +37,13 @@ export default class SignUpView extends ValidationComponent {
       email: { email: true, required: true },
       password: { minlength: 6, maxLength: 12, required: true },
       ConfirmPassword: { equalPassword: this.state.password, required: true },
-      MobileNumber: { numbers: true, required: true },
+      MobileNumber: { numbers: true, required: true,},
     });
     this.setState({ errors: this.getErrorMessages(", ") });
   }
 
   render() {
+
     return (
       <ScrollView
         keyboardShouldPersistTaps="handled"
@@ -178,7 +181,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    paddingTop: 60,
+    paddingTop: 30,
     alignItems: "center",
     backgroundColor: "#B0E0E6",
   },

@@ -14,6 +14,8 @@ import {
 import { Title } from "react-native-paper";
 import ValidationComponent from "react-native-form-validator";
 import {NavigationActions} from 'react-navigation';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import SignUpView from "./Signup";
 import { useNavigation } from "@react-navigation/native";
