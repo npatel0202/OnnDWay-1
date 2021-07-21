@@ -15,6 +15,7 @@ import HomeScreen from "./src/pages/HomeScreen";
 import { createStackNavigator } from '@react-navigation/stack';
 import TabViewComponent from "react-native-elements/dist/tab/TabView";
 
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -90,6 +91,14 @@ export default function App(props) {
         <Tab.Screen name="AfterLogin" component={AfterLogin} />
       </Stack.Navigator>
     </NavigationContainer>
+//      <Router history={history}>
+//      <Switch>
+//          <Route path="/" exact component={Home} />
+//          <Route path="/About" component={About} />
+//          <Route path="/Contact" component={Contact} />
+//          <Route path="/Products" component={Products} />
+//      </Switch>
+//  </Router>
   );
 }
 

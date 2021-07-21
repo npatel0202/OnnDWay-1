@@ -14,6 +14,7 @@ import {
 import { Picker } from "@react-native-community/picker";
 import ValidationComponent from "react-native-form-validator";
 import { Router, Switch, Route } from "react-router-dom";
+import firebase from 'firebase';
 
 
 export default class SignUpView extends ValidationComponent {
@@ -30,6 +31,25 @@ export default class SignUpView extends ValidationComponent {
     };
   }
 
+   users(){
+    const [users,setUsers] = useState('');
+    const ref = firebase().firestore().collection('users')
+  
+    async function addusers(){
+      await ref.add({
+        fullName : this.setState.fullName,
+        email: this.setState.email,
+        password:this.setState.password,
+        MobileNumber: this.setState.MobileNumber,
+        PickerValue:this.setState.PickerValue
+  
+   
+      });
+      setUsers('');
+    }
+    return null;
+  
+  }
   onSignup() {
     const { fullName, password, ConfirmPassword, MobileNumber } = this.state;
     this.validate({
@@ -40,6 +60,7 @@ export default class SignUpView extends ValidationComponent {
       MobileNumber: { numbers: true, required: true,},
     });
     this.setState({ errors: this.getErrorMessages(", ") });
+    
   }
 
   render() {

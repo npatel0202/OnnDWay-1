@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "268952751990",
+    "project_id": "reactnativefirebase-738bd",
+    "storage_bucket": "reactnativefirebase-738bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268952751990:android:a1805acc4ddfbc06e0b457",
+        "android_client_info": {
+          "package_name": "com.OnnDway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268952751990-r6p48aabf0c18m31r0q9p200oo5tbl0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-PKu_bEAFjxufyjNC7DP_IhWrIvdqhNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268952751990-r6p48aabf0c18m31r0q9p200oo5tbl0i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
