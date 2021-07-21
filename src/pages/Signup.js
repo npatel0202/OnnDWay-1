@@ -48,11 +48,12 @@ export default class SignUpView extends ValidationComponent {
       users: ''
       
     });
+
     this.props.navigation.navigate(
-      "AfterLogin",
+      "LoginSignup",
       {},
       NavigationActions.navigate({
-        routeName: "Home",
+        routeName: "SignUp",
       })
     )
   };
@@ -187,6 +188,8 @@ export default class SignUpView extends ValidationComponent {
               this.setState({ PickerValue: itemValue })
             }
           >
+            <Picker.Item label="Select a user" key="0" value="" />
+
             <Picker.Item label="Restaurant" key="1" value="Restaurant" />
 
             <Picker.Item label="Retailer" key="2" value="Retailer" />
