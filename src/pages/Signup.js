@@ -14,8 +14,11 @@ import {
 import { Picker } from "@react-native-community/picker";
 import ValidationComponent from "react-native-form-validator";
 import { Router, Switch, Route } from "react-router-dom";
-import firebase from 'firebase';
+import firebase from "firebase";
+import {NavigationActions} from 'react-navigation';
 
+
+const db = require('../../firebase.config');
 
 export default class SignUpView extends ValidationComponent {
   constructor(props) {
@@ -28,28 +31,31 @@ export default class SignUpView extends ValidationComponent {
       MobileNumber: "",
       PickerValue: "",
       error: "",
+      users: "",
     };
   }
 
-   users(){
-    const [users,setUsers] = useState('');
-    const ref = firebase().firestore().collection('users')
-  
-    async function addusers(){
-      await ref.add({
-        fullName : this.setState.fullName,
-        email: this.setState.email,
-        password:this.setState.password,
-        MobileNumber: this.setState.MobileNumber,
-        PickerValue:this.setState.PickerValue
-  
-   
-      });
-      setUsers('');
-    }
-    return null;
-  
-  }
+  addusers = async () => {
+    const ref = firebase.firestore().collection("users");
+    await ref.add({
+      fullName: this.state.fullName,
+      email: this.state.email,
+      password: this.state.password,
+      MobileNumber: this.state.MobileNumber,
+      PickerValue: this.state.PickerValue,
+    });
+    this.setState({
+      users: ''
+      
+    });
+    this.props.navigation.navigate(
+      "AfterLogin",
+      {},
+      NavigationActions.navigate({
+        routeName: "Home",
+      })
+    )
+  };
   onSignup() {
     const { fullName, password, ConfirmPassword, MobileNumber } = this.state;
     this.validate({
@@ -57,14 +63,13 @@ export default class SignUpView extends ValidationComponent {
       email: { email: true, required: true },
       password: { minlength: 6, maxLength: 12, required: true },
       ConfirmPassword: { equalPassword: this.state.password, required: true },
-      MobileNumber: { numbers: true, required: true,},
+      MobileNumber: { numbers: true, required: true },
     });
     this.setState({ errors: this.getErrorMessages(", ") });
-    
+    this.addusers();
   }
 
   render() {
-
     return (
       <ScrollView
         keyboardShouldPersistTaps="handled"
@@ -201,7 +206,7 @@ export default class SignUpView extends ValidationComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
     paddingTop: 30,
     alignItems: "center",
     backgroundColor: "#B0E0E6",
