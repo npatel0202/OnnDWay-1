@@ -15,10 +15,9 @@ import { Picker } from "@react-native-community/picker";
 import ValidationComponent from "react-native-form-validator";
 import { Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase";
-import {NavigationActions} from 'react-navigation';
+import { NavigationActions } from "react-navigation";
 
-
-const db = require('../../firebase.config');
+const db = require("../../firebase.config");
 
 export default class SignUpView extends ValidationComponent {
   constructor(props) {
@@ -45,20 +44,20 @@ export default class SignUpView extends ValidationComponent {
       PickerValue: this.state.PickerValue,
     });
     this.setState({
-      users: ''
-      
-    });
-
+      users: "",
+    }); 
+     
     this.props.navigation.navigate(
-      "LoginSignup",
+      "AfterLogin",
       {},
       NavigationActions.navigate({
-        routeName: "SignUp",
+        routeName: "Home",
       })
-    )
+    );  
   };
   onSignup() {
     const { fullName, password, ConfirmPassword, MobileNumber } = this.state;
+
     this.validate({
       fullName: { minlength: 3, maxlength: 50, required: true },
       email: { email: true, required: true },
@@ -67,8 +66,21 @@ export default class SignUpView extends ValidationComponent {
       MobileNumber: { numbers: true, required: true },
     });
     this.setState({ errors: this.getErrorMessages(", ") });
-    this.addusers();
-  }
+    if(this.errors.length == 0)
+    {
+      this.addusers();
+
+    }
+    else{
+      this.props.navigation.navigate(
+        "LoginSignup",
+        {},
+        NavigationActions.navigate({
+          routeName: "Signup",
+        })
+      );  
+    }
+      }
 
   render() {
     return (
@@ -199,6 +211,7 @@ export default class SignUpView extends ValidationComponent {
             title="Signup"
             style={styles.input}
             onPress={this.onSignup.bind(this)}
+           //onPress={() => this.addusers()}
           />
         </View>
       </ScrollView>
