@@ -10,6 +10,7 @@ import {
   Alert,
   Image,
   ScrollView,
+  SafeAreaView
 } from "react-native";
 import { Title } from "react-native-paper";
 import ValidationComponent from "react-native-form-validator";
@@ -31,19 +32,46 @@ export default class LoginView extends ValidationComponent {
     };
   }
 
+  getusers = async () => {
+    const ref = firebase.firestore().collection("users");
+    await ref.add({
+      email: this.state.email,
+      password: this.state.password,
+
+    });
+    this.setState({
+      users: "",
+    });} 
+
   onLogin() {
     this.validate({
       email: { email: true, required: true },
       password: { minlength: 6, maxLength: 12, required: true },
     });
     this.setState({ errors: this.getErrorMessages(", ") });
+    if(this.errors.length == 0)
+    {
+      this.getusers();
+
+    }
+    else{
+      this.props.navigation.navigate(
+        "LoginSignup",
+        {},
+        NavigationActions.navigate({
+          routeName: "Login",
+        })
+      );  
+    }
   }
 
   render() {
     return (
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ flex: 1 }}
+      <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}
+     keyboardDismissMode="interactive"
+        // keyboardShouldPersistTaps="handled"
+         //contentContainerStyle={{ flex: 1 }}
       >
         <View style={styles.container}>
           <Image
@@ -95,19 +123,12 @@ export default class LoginView extends ValidationComponent {
           <Button
             title="Login"
             style={styles.input}
-            // onPress={this.onLogin.bind(this)}
-            onPress={() =>
-              this.props.navigation.navigate(
-                "AfterLogin",
-                {},
-                NavigationActions.navigate({
-                  routeName: "Home",
-                })
-              )
-            }
+             onPress={this.onLogin.bind(this)}
+            
           />
         </View>
       </ScrollView>
+      </SafeAreaView>
     );
   }
 }

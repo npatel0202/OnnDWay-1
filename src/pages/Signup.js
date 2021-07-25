@@ -10,6 +10,7 @@ import {
   TouchableHighlight,
   KeyboardAvoidingView,
   Image,
+  SafeAreaView
 } from "react-native";
 import { Picker } from "@react-native-community/picker";
 import ValidationComponent from "react-native-form-validator";
@@ -64,6 +65,7 @@ export default class SignUpView extends ValidationComponent {
       password: { minlength: 6, maxLength: 12, required: true },
       ConfirmPassword: { equalPassword: this.state.password, required: true },
       MobileNumber: { numbers: true, required: true },
+      PickerValue:{required:true}
     });
     this.setState({ errors: this.getErrorMessages(", ") });
     if(this.errors.length == 0)
@@ -84,9 +86,11 @@ export default class SignUpView extends ValidationComponent {
 
   render() {
     return (
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ flex: 1 }}
+      <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}
+     keyboardDismissMode="interactive"
+      //  keyboardShouldPersistTaps="handled"
+        //contentContainerStyle={{ flex: 1 }}
       >
         <View style={styles.container}>
           <View style={styles.inputContainer}>
@@ -215,6 +219,7 @@ export default class SignUpView extends ValidationComponent {
           />
         </View>
       </ScrollView>
+      </SafeAreaView>
     );
   }
 }
