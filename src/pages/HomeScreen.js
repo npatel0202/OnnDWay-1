@@ -1,59 +1,3 @@
-// import React from "react";
-// import { render } from "react-dom";
-// import { View, Text, SafeAreaView } from "react-native";
-// import { Header } from "react-native-elements";
-// import LinearGradient from "react-native-linear-gradient";
-
-// export default class HomeScreen extends React.Component {
-//   render() {
-//     return (
-//       <SafeAreaView style={{ flex: 1 }}>
-//         <View style={{ flex: 1, padding: 16 }}>
-//           <Header
-//             placement="left"
-//             leftComponent={{ icon: "menu", color: "#fff" }}
-//             centerComponent={{ text: "OnnDWay", style: { color: "#fff" } }}
-//             rightComponent={{ icon: "home", color: "#fff" }}
-//           />
-
-//           <View
-//             style={{
-//               flex: 1,
-//               alignItems: "center",
-//               justifyContent: "center",
-//             }}
-//           >
-//             <Text
-//               style={{
-//                 fontSize: 20,
-//                 textAlign: "center",
-//                 marginBottom: 16,
-//               }}
-//             >
-//               This is the Home Screen
-//             </Text>
-//           </View>
-//           <Text
-//             style={{
-//               fontSize: 18,
-//               textAlign: "center",
-//               color: "grey",
-//             }}
-//           ></Text>
-//           <Text
-//             style={{
-//               fontSize: 16,
-//               textAlign: "center",
-//               color: "grey",
-//             }}
-//           ></Text>
-//         </View>
-//       </SafeAreaView>
-//     );
-//   }
-// }
-
-// //export default HomeScreen;
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -74,14 +18,14 @@ export default class HomeScreen extends Component {
       data: [
         {id:1, title: "Home", image:"https://img.icons8.com/color/70/000000/cottage.png"},
         {id:1, title: "Profile", image:"https://img.icons8.com/color/70/000000/administrator-male.png"},
-        {id:2, title: "Add Drivers", image:"https://img.icons8.com/color/70/000000/filled-like.png"} ,
-        {id:3, title: "List of Drivers", image:"https://img.icons8.com/color/70/000000/facebook-like.png"} ,
-        {id:4, title: "Orders", image:"https://img.icons8.com/color/70/000000/shutdown.png"} ,
+        {id:2, title: "Add Drivers", image :"https://img.icons8.com/ios-filled/50/4a90e2/add--v1.png"} ,
+        {id:3, title: "List of Drivers", image:"https://img.icons8.com/color/48/000000/group.png"} ,
+        {id:4, title: "Orders", image:"https://img.icons8.com/color/48/000000/purchase-order.png"} ,
         {id:5, title: "Telephone Order", image:"https://img.icons8.com/color/70/000000/traffic-jam.png"} ,
-        {id:6, title: "History Orders", image:"https://img.icons8.com/dusk/70/000000/visual-game-boy.png"} ,
-        {id:8, title: "Cancel", image:"https://img.icons8.com/flat_round/70/000000/cow.png"} ,
-        {id:9, title: "Option 9", image:"https://img.icons8.com/color/70/000000/coworking.png"} ,
-        {id:9, title: "Option 10",image:"https://img.icons8.com/nolan/70/000000/job.png"} ,
+        {id:6, title: "History Orders", image:"https://img.icons8.com/color-glass/48/000000/order-history.png"} ,
+        {id:8, title: "Cancel Order", image:"https://img.icons8.com/color/48/000000/cancel--v1.png"} ,
+        {id:9, title: "Track Order", image:"https://img.icons8.com/color-glass/48/000000/track-order.png"} ,
+        {id:9, title: "Setting",image:"https://img.icons8.com/android/24/000000/automatic.png"} ,
       ]
     };
   }
