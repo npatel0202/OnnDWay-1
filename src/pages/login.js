@@ -10,16 +10,18 @@ import {
   Alert,
   Image,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Title } from "react-native-paper";
 import ValidationComponent from "react-native-form-validator";
-import {NavigationActions} from 'react-navigation';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationActions } from "react-navigation";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import SignUpView from "./Signup";
 import { useNavigation } from "@react-navigation/native";
+import firebase from "firebase";
 
 export default class LoginView extends ValidationComponent {
   constructor(props) {
@@ -28,106 +30,134 @@ export default class LoginView extends ValidationComponent {
       email: "",
       password: "",
 
-      error: "",
+      // error: "",
     };
   }
 
-  getusers = async () => {
-    const ref = firebase.firestore().collection("users");
-    await ref.add({
-      email: this.state.email,
-      password: this.state.password,
+  // getusers = async () => {
+  //   const ref = firebase.firestore().collection("users");
+  //   await ref.add({
+  //     email: this.state.email,
+  //     password: this.state.password,
 
-    });
-    this.setState({
-      users: "",
-    });} 
+  //   });
+  //   this.setState({
+  //     users: "",
+  //   });}
 
+  // onLogin() {
+  //   this.validate({
+  //     email: { email: true, required: true },
+  //     password: { minlength: 6, maxLength: 12, required: true,},
+  //   });
+  //   this.setState({ errors: this.getErrorMessages(", ") });
+  //   if(this.errors.length == 0)
+  //   {
+  //     this.props.navigation.navigate(
+  //       "AfterLogin",
+  //       {},
+  //       NavigationActions.navigate({
+  //         routeName: "Home",
+  //       })
+  //     );
+
+  //   }
+  //   else{
+  //     this.props.navigation.navigate(
+  //       "LoginSignup",
+  //       {},
+  //       NavigationActions.navigate({
+  //         routeName: "Login",
+  //       })
+  //     );
+  //   }
+  // }
   onLogin() {
-    this.validate({
-      email: { email: true, required: true },
-      password: { minlength: 6, maxLength: 12, required: true },
-    });
-    this.setState({ errors: this.getErrorMessages(", ") });
-    if(this.errors.length == 0)
-    {
-      this.getusers();
-
-    }
-    else{
-      this.props.navigation.navigate(
-        "LoginSignup",
-        {},
-        NavigationActions.navigate({
-          routeName: "Login",
-        })
-      );  
-    }
+    const { email, password } = this.state;
+    console.log(email, password);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.props.navigation.navigate(
+          "AfterLogin",
+          {},
+          NavigationActions.navigate({
+            routeName: "Home",
+          })
+        );
+      })
+      .catch((error) => {
+        Alert.alert(error.message);
+      });
   }
-
   render() {
     return (
       <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}
-     keyboardDismissMode="interactive"
-        // keyboardShouldPersistTaps="handled"
-         //contentContainerStyle={{ flex: 1 }}
-      >
-        <View style={styles.container}>
-          <Image
-            style={styles.stretch}
-            source={require("./../images/splash.jpg")}
-          />
-
-          <TouchableOpacity style={styles.title}>
-            <Title>Welcome to OnnDWay</Title>
-          </TouchableOpacity>
-
-          <View style={styles.inputContainer}>
+        <ScrollView
+          style={styles.scrollView}
+          //keyboardDismissMode="interactive"
+          keyboardShouldPersistTaps="handled"
+          //contentContainerStyle={{ flex: 1 }}
+        >
+          <View style={styles.container}>
             <Image
-              style={[styles.icon, styles.inputIcon]}
-              source={{
-                uri: "https://png.icons8.com/password/androidL/40/3498db",
-              }}
+              style={styles.stretch}
+              source={require("./../images/splash.jpg")}
             />
-            <TextInput
-              style={styles.inputs}
-              placeholder="Email"
-              keyboardType="email-address"
-              underlineColorAndroid="transparent"
+
+            <TouchableOpacity style={styles.title}>
+              <Title>Welcome to OnnDWay</Title>
+            </TouchableOpacity>
+
+            <View style={styles.inputContainer}>
+              <Image
+                style={[styles.icon, styles.inputIcon]}
+                source={{
+                  uri: "https://png.icons8.com/password/androidL/40/3498db",
+                }}
+              />
+              <TextInput
+                style={styles.inputs}
+                placeholder="Email"
+                name="email"
+                underlineColorAndroid="transparent"
+                onChangeText={(val) => this.setState({ email: val })}
+              />
+            </View>
+            {this.isFieldInError("email") &&
+              this.getErrorsInField("email").map((errorMessage) => (
+                <Text key={errorMessage}>{errorMessage}</Text>
+              ))}
+            <View style={styles.inputContainer}>
+              <Image
+                style={[styles.icon, styles.inputIcon]}
+                source={{
+                  uri: "https://png.icons8.com/envelope/androidL/40/3498db",
+                }}
+              />
+              <TextInput
+                style={styles.inputs}
+                placeholder="Password"
+                name="password"
+                secureTextEntry={true}
+                underlineColorAndroid="transparent"
+                onChangeText={(val) => this.setState({ password: val })}
+              />
+            </View>
+            {this.isFieldInError("password") &&
+              this.getErrorsInField("password").map((errorMessage) => (
+                <Text key={errorMessage}>{errorMessage}</Text>
+              ))}
+
+            <Button
+              title="Login"
+              style={styles.input}
+              //onPress={this.onLogin.bind(this)}
+              onPress={() => this.onLogin()}
             />
           </View>
-          {this.isFieldInError("email") &&
-            this.getErrorsInField("email").map((errorMessage) => (
-              <Text key={errorMessage}>{errorMessage}</Text>
-            ))}
-          <View style={styles.inputContainer}>
-            <Image
-              style={[styles.icon, styles.inputIcon]}
-              source={{
-                uri: "https://png.icons8.com/envelope/androidL/40/3498db",
-              }}
-            />
-            <TextInput
-              style={styles.inputs}
-              placeholder="Password"
-              secureTextEntry={true}
-              underlineColorAndroid="transparent"
-            />
-          </View>
-          {this.isFieldInError("password") &&
-            this.getErrorsInField("password").map((errorMessage) => (
-              <Text key={errorMessage}>{errorMessage}</Text>
-            ))}
-
-          <Button
-            title="Login"
-            style={styles.input}
-             onPress={this.onLogin.bind(this)}
-            
-          />
-        </View>
-      </ScrollView>
+        </ScrollView>
       </SafeAreaView>
     );
   }

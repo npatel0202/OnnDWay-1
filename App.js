@@ -87,7 +87,7 @@ export default function App(props) {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Tab.Screen name="LoginSignup" component={LoginSignup} />
+        <Tab.Screen name="LoginSignup" component={LoginSignup} /> 
         <Tab.Screen name="AfterLogin" component={AfterLogin} />
       </Stack.Navigator>
     </NavigationContainer>

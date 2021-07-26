@@ -36,11 +36,14 @@ export default class SignUpView extends ValidationComponent {
   }
 
   addusers = async () => {
+      
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+  .then(async(userCredential) => {
     const ref = firebase.firestore().collection("users");
     await ref.add({
       fullName: this.state.fullName,
       email: this.state.email,
-      password: this.state.password,
+      // password: this.state.password,
       MobileNumber: this.state.MobileNumber,
       PickerValue: this.state.PickerValue,
     });
@@ -48,6 +51,7 @@ export default class SignUpView extends ValidationComponent {
       users: "",
     }); 
      
+    // Signed in
     this.props.navigation.navigate(
       "AfterLogin",
       {},
@@ -55,6 +59,13 @@ export default class SignUpView extends ValidationComponent {
         routeName: "Home",
       })
     );  
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ..
+  });
   };
   onSignup() {
     const { fullName, password, ConfirmPassword, MobileNumber } = this.state;
@@ -89,7 +100,7 @@ export default class SignUpView extends ValidationComponent {
       <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}
      keyboardDismissMode="interactive"
-      //  keyboardShouldPersistTaps="handled"
+       keyboardShouldPersistTaps="handled"
         //contentContainerStyle={{ flex: 1 }}
       >
         <View style={styles.container}>
