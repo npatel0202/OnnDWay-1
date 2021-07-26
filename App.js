@@ -19,34 +19,34 @@ import TabViewComponent from "react-native-elements/dist/tab/TabView";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// const LoginSignup = (props) => {
-//    return (
-//     <Tab.Navigator 
-//     tabBarOptions={{
-//       keyboardHidesTabBar:true,
-//       labelPosition: "beside-icon",
-//       activeTintColor: "white",
-//       style: {
-//       backgroundColor: "#34568B",
-//     },
-//     labelStyle: {
-//       fontSize: 20,
-//     },
-//     tabStyle: {
-//       fontSize: 10,
-//     },
-//   }}
-// >
-//       <Tab.Screen name="Login"  component={LoginView} />
-//       <Tab.Screen name="SignUp" component={SignUpView} />
+const LoginSignup = (props) => {
+   return (
+    <Tab.Navigator 
+    tabBarOptions={{
+      keyboardHidesTabBar:true,
+      labelPosition: "beside-icon",
+      activeTintColor: "white",
+      style: {
+      backgroundColor: "#34568B",
+    },
+    labelStyle: {
+      fontSize: 20,
+    },
+    tabStyle: {
+      fontSize: 10,
+    },
+  }}
+>
+      <Tab.Screen name="Login"  component={LoginView} />
+      <Tab.Screen name="SignUp" component={SignUpView} />
 
 
-//     </Tab.Navigator>
-//    )
+    </Tab.Navigator>
+   )
 
-// }
+}
 
-const AfterLogin = () => {
+const OnnDWay = () => {
   return (
     <Tab.Navigator 
     tabBarOptions={{
@@ -87,8 +87,8 @@ export default function App(props) {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Tab.Screen name="LoginSignup" component={LoginSignup} />  */}
-        <Tab.Screen name="AfterLogin" component={AfterLogin} />
+        <Tab.Screen name="LoginSignup" component={LoginSignup} /> 
+        <Tab.Screen name="OnnDWay" component={OnnDWay} />
       </Stack.Navigator>
     </NavigationContainer>
 //      <Router history={history}>

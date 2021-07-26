@@ -80,7 +80,7 @@ export default class LoginView extends ValidationComponent {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         this.props.navigation.navigate(
-          "AfterLogin",
+          "OnnDWay",
           {},
           NavigationActions.navigate({
             routeName: "Home",

@@ -53,7 +53,7 @@ export default class SignUpView extends ValidationComponent {
      
     // Signed in
     this.props.navigation.navigate(
-      "AfterLogin",
+      "OnnDWay",
       {},
       NavigationActions.navigate({
         routeName: "Home",
