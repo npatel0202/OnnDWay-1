@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import firebase from 'firebase';
+import { NavigationActions } from 'react-navigation';
 import {
   StyleSheet,
   Text,
@@ -82,7 +84,22 @@ export default class HomeScreen extends Component {
   }
 
   clickEventListener(item) {
-    Alert.alert(item.title);
+    if (item.title == "Logout") {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.props.navigation.navigate(
+            "LoginSignup",
+            {},
+            NavigationActions.navigate({
+              routeName: "Login",
+            })
+          );
+        });
+    } else {
+      Alert.alert(item.title);
+    }
   }
 
   render() {

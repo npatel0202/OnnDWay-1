@@ -79,6 +79,8 @@ export default class LoginView extends ValidationComponent {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
+        this.emailInput.clear();
+        this.passwordInput.clear();
         this.props.navigation.navigate(
           "OnnDWay",
           {},
@@ -122,6 +124,7 @@ export default class LoginView extends ValidationComponent {
                 placeholder="Email"
                 name="email"
                 underlineColorAndroid="transparent"
+                ref={input => { this.emailInput = input }}
                 onChangeText={(val) => this.setState({ email: val })}
               />
             </View>
@@ -142,6 +145,7 @@ export default class LoginView extends ValidationComponent {
                 name="password"
                 secureTextEntry={true}
                 underlineColorAndroid="transparent"
+                ref={input => { this.passwordInput = input }}
                 onChangeText={(val) => this.setState({ password: val })}
               />
             </View>
