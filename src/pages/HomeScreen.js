@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import firebase from 'firebase';
-import { NavigationActions } from 'react-navigation';
+import firebase from "firebase";
+import { NavigationActions } from "react-navigation";
 import {
   StyleSheet,
   Text,
@@ -10,18 +10,21 @@ import {
   Alert,
   ScrollView,
   FlatList,
+  Icon,
 } from "react-native";
+import { Header } from "react-native-elements";
+
 
 export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [
-        {
-          id: 1,
-          title: "Home",
-          image: "https://img.icons8.com/color/70/000000/cottage.png",
-        },
+        // {
+        //   id: 1,
+        //   title: "Home",
+        //   image: "https://img.icons8.com/color/70/000000/cottage.png",
+        // },
         {
           id: 2,
           title: "Profile",
@@ -105,6 +108,26 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          //leftComponent={{ icon: 'menu', color: '#fff', iconStyle: { color: '#fff' } }}
+          centerComponent={{
+            text: "OnnDWay",
+            style: {
+              color: "#fff",
+              fontSize: 25,
+              justifyContent: "center",
+              position: "absolute",
+              top: -15,
+              left: -50,
+              right: 0,
+              bottom: 0,
+              justifyContent: "center",
+              alignItems: "center",
+            },
+          }}
+          rightComponent={{ icon: "home", color: "white",  }}
+        
+        />
         <FlatList
           style={styles.list}
           contentContainerStyle={styles.listContainer}
@@ -148,7 +171,7 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 40,
+    marginTop: 15,
     backgroundColor: "#f6f6f6",
   },
   list: {

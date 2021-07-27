@@ -79,8 +79,9 @@ export default class LoginView extends ValidationComponent {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        this.emailInput.clear();
-        this.passwordInput.clear();
+
+
+       // this.submit.clear();
         this.props.navigation.navigate(
           "OnnDWay",
           {},
@@ -88,8 +89,11 @@ export default class LoginView extends ValidationComponent {
             routeName: "Home",
           })
         );
+        this.emailInput.clear();
+        this.passwordInput.clear();
       })
-      .catch((error) => {
+      .catch((error) => {        
+
         Alert.alert(error.message);
       });
   }
@@ -158,7 +162,9 @@ export default class LoginView extends ValidationComponent {
               title="Login"
               style={styles.input}
               //onPress={this.onLogin.bind(this)}
+
               onPress={() => this.onLogin()}
+              ref={input => { this.submit = input }}
             />
           </View>
         </ScrollView>

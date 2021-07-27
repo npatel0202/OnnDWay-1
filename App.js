@@ -73,16 +73,7 @@ const OnnDWay = () => {
 
 
 
-//  export default class App extends Component {
-//    render() {
-//      return (
-//        <View style={styles.container}>
-//         <LoginView></LoginView>
 
-//        </View>
-//      );
-//    }
-//  }
 export default function App(props) {
   return (
     <NavigationContainer>
@@ -91,14 +82,7 @@ export default function App(props) {
         <Stack.Screen options={{headerShown: false}} name="OnnDWay" component={OnnDWay} />
       </Stack.Navigator>
     </NavigationContainer>
-//      <Router history={history}>
-//      <Switch>
-//          <Route path="/" exact component={Home} />
-//          <Route path="/About" component={About} />
-//          <Route path="/Contact" component={Contact} />
-//          <Route path="/Products" component={Products} />
-//      </Switch>
-//  </Router>
+
   );
 }
 
