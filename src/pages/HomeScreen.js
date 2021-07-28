@@ -30,6 +30,7 @@ export default class HomeScreen extends Component {
           title: "Profile",
           image:
             "https://img.icons8.com/color/70/000000/administrator-male.png",
+
         },
         {
           id: 3,
@@ -38,8 +39,10 @@ export default class HomeScreen extends Component {
         },
         {
           id: 4,
-          title: "Add Drivers",
+          title: "AddDrivers",
           image: "https://img.icons8.com/ios-filled/50/4a90e2/add--v1.png",
+         
+  
         },
 
         {
@@ -66,7 +69,7 @@ export default class HomeScreen extends Component {
         },
         {
           id: 9,
-          title: "Cancel Order",
+          title: "Canceled Order",
           image: "https://img.icons8.com/color/48/000000/cancel--v1.png",
         },
 
@@ -100,10 +103,18 @@ export default class HomeScreen extends Component {
             })
           );
         });
-    } else {
-      Alert.alert(item.title);
+
+    }  if ( item.title =="AddDrivers")  {
+      this.props.navigation.navigate(
+        "AddDriver"
+      );
+      
+
     }
-  }
+
+                  //  Alert.alert(item.title);
+  
+}
 
   render() {
     return (
@@ -114,10 +125,10 @@ export default class HomeScreen extends Component {
             text: "OnnDWay",
             style: {
               color: "#fff",
-              fontSize: 25,
+              fontSize: 21,
               justifyContent: "center",
               position: "absolute",
-              top: -15,
+              top: -4,
               left: -50,
               right: 0,
               bottom: 0,
@@ -125,7 +136,7 @@ export default class HomeScreen extends Component {
               alignItems: "center",
             },
           }}
-          rightComponent={{ icon: "home", color: "white",  }}
+          rightComponent={{ icon: "home",color:"white"}}         
         
         />
         <FlatList
@@ -149,13 +160,16 @@ export default class HomeScreen extends Component {
                   <Image
                     style={styles.cardImage}
                     source={{ uri: item.image }}
+                    
                   />
                 </TouchableOpacity>
 
                 <View style={styles.cardHeader}>
                   <View
                     style={{ alignItems: "center", justifyContent: "center" }}
+                    
                   >
+                    
                     <Text style={styles.title}>{item.title}</Text>
                   </View>
                 </View>
