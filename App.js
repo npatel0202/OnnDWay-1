@@ -19,31 +19,31 @@ import AddDriverView from "./src/pages/AddDrivers";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// const LoginSignup = (props) => {
-//    return (
-//     <Tab.Navigator
-//     tabBarOptions={{
-//       keyboardHidesTabBar:true,
-//       labelPosition: "beside-icon",
-//       activeTintColor: "white",
-//       style: {
-//       backgroundColor: "#34568B",
-//     },
-//     labelStyle: {
-//       fontSize: 20,
-//     },
-//     tabStyle: {
-//       fontSize: 10,
-//     },
-//   }}
-// >
-//       <Tab.Screen name="Login"  component={LoginView} />
-//       <Tab.Screen name="SignUp" component={SignUpView} />
+const LoginSignup = (props) => {
+   return (
+    <Tab.Navigator
+    tabBarOptions={{
+      keyboardHidesTabBar:true,
+      labelPosition: "beside-icon",
+      activeTintColor: "white",
+      style: {
+      backgroundColor: "#34568B",
+    },
+    labelStyle: {
+      fontSize: 20,
+    },
+    tabStyle: {
+      fontSize: 10,
+    },
+  }}
+>
+      <Tab.Screen name="Login"  component={LoginView} />
+      <Tab.Screen name="SignUp" component={SignUpView} />
 
-//     </Tab.Navigator>
-//    )
+    </Tab.Navigator>
+   )
 
-// }
+}
 
 const OnnDWay = () => {
   return (
@@ -63,7 +63,8 @@ const OnnDWay = () => {
         },
       }}
     >
-      <Stack.Screen options={{headerShown: false}} name="Home" component={HomeScreen} />
+      <Stack.Screen options={{headerShown: false}} name="Home" component={HomeScreen}  options={{ title:"OnnDWay",headerStyle: {
+              backgroundColor: '#e7305b'}}} />
       <Stack.Screen name="AddDriver" component={AddDriverView} />
       {/* add new here.................................... */}
     </Stack.Navigator>
@@ -74,7 +75,7 @@ export default function App(props) {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen options={{headerShown: false}} name="LoginSignup" component={LoginSignup} />  */}
+        <Stack.Screen options={{headerShown: false}} name="LoginSignup" component={LoginSignup} /> 
         <Stack.Screen
           options={{ headerShown: false }}
           name="OnnDWay"

@@ -119,8 +119,7 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header
-          //leftComponent={{ icon: 'menu', color: '#fff', iconStyle: { color: '#fff' } }}
+        {/* <Header
           centerComponent={{
             text: "OnnDWay",
             style: {
@@ -137,8 +136,7 @@ export default class HomeScreen extends Component {
             },
           }}
           rightComponent={{ icon: "home",color:"white"}}         
-        
-        />
+          /> */}
         <FlatList
           style={styles.list}
           contentContainerStyle={styles.listContainer}
@@ -185,12 +183,13 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 15,
+    marginTop: 0,
     backgroundColor: "#f6f6f6",
   },
+  
   list: {
     paddingHorizontal: 5,
-    backgroundColor: "#f6f6f6",
+    backgroundColor: "#f1e3dd",
   },
   listContainer: {
     alignItems: "center",
@@ -247,6 +246,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     flex: 1,
     alignSelf: "center",
-    color: "#696969",
+    color: "black",
   },
+ 
 });
