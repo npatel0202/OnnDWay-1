@@ -63,7 +63,7 @@ const OnnDWay = () => {
         },
       }}
     >
-      <Stack.Screen options={{headerShown: false}} name="Home" component={HomeScreen}  options={{ title:"OnnDWay",headerStyle: {
+      <Stack.Screen options={{headerShown: true}} name="Home" component={HomeScreen}  options={{ title:"OnnDWay",headerLeft: null,headerStyle: {
               backgroundColor: '#e7305b'}}} />
       <Stack.Screen name="AddDriver" component={AddDriverView} />
       {/* add new here.................................... */}
@@ -77,9 +77,10 @@ export default function App(props) {
       <Stack.Navigator>
         <Stack.Screen options={{headerShown: false}} name="LoginSignup" component={LoginSignup} /> 
         <Stack.Screen
-          options={{ headerShown: false }}
+          options={{ headerShown: false}}
           name="OnnDWay"
           component={OnnDWay}
+          
         />
       </Stack.Navigator>
     </NavigationContainer>
