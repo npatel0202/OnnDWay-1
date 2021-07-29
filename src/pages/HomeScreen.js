@@ -111,6 +111,13 @@ export default class HomeScreen extends Component {
       
 
     }
+    if ( item.title =="Profile")  {
+      this.props.navigation.navigate(
+        "profile"
+      );
+      
+
+    }
 
                   //  Alert.alert(item.title);
   
