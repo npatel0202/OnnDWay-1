@@ -16,6 +16,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import TabViewComponent from "react-native-elements/dist/tab/TabView";
 import AddDriverView from "./src/pages/AddDrivers";
 import UserProfileView from "./src/pages/profile";
+import Contacts from "./src/pages/Driverlist";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -68,6 +69,9 @@ const OnnDWay = () => {
               backgroundColor: '#e7305b'}}} />
       <Stack.Screen name="AddDriver" component={AddDriverView} />
       <Stack.Screen name="profile" component={UserProfileView} />
+      <Stack.Screen name="driverslist" component={Contacts} />
+      
+
       {/* add new here.................................... */}
     </Stack.Navigator>
   );

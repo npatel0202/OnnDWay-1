@@ -118,6 +118,13 @@ export default class HomeScreen extends Component {
       
 
     }
+    if ( item.title =="List of Drivers")  {
+      this.props.navigation.navigate(
+        "driverslist"
+      );
+      
+
+    }
 
                   //  Alert.alert(item.title);
   
