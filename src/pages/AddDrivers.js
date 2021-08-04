@@ -66,7 +66,7 @@ export default class AddDriverView extends ValidationComponent {
     }
     else{
       this.props.navigation.navigate(
-        "AddDriver",
+        "OnnDWay",
        
       );  
     }

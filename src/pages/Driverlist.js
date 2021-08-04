@@ -16,16 +16,14 @@ export default class Contacts extends Component {
     super(props);
     this.state = {
       calls: [
-        {id:1,  name: "Mark Doe",    status:"active", image:"https://bootdey.com/img/Content/avatar/avatar7.png"},
-        {id:2,  name: "Clark Man",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar6.png"} ,
-        {id:3,  name: "Jaden Boor",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar5.png"} ,
-        {id:4,  name: "Srick Tree",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar4.png"} ,
-        {id:5,  name: "Erick Doe",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar3.png"} ,
-        {id:6,  name: "Francis Doe", status:"active", image:"https://bootdey.com/img/Content/avatar/avatar2.png"} ,
-        {id:8,  name: "Matilde Doe", status:"active", image:"https://bootdey.com/img/Content/avatar/avatar1.png"} ,
-        {id:9,  name: "John Doe",    status:"active", image:"https://bootdey.com/img/Content/avatar/avatar4.png"} ,
-        {id:10, name: "Fermod Doe",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar7.png"} ,
-        {id:11, name: "Danny Doe",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar1.png"},
+        {id:1,  name: "Driver 1 ",    status:"active", image:"https://bootdey.com/img/Content/avatar/avatar7.png"},
+        {id:2,  name: "Driver 2",   status:"not available", image:"https://bootdey.com/img/Content/avatar/avatar6.png"} ,
+        {id:3,  name: "Driver 3",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar5.png"} ,
+        {id:4,  name: "Driver 4 ",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar4.png"} ,
+        {id:5,  name: "Driver 5",   status:"not available", image:"https://bootdey.com/img/Content/avatar/avatar3.png"} ,
+        {id:6,  name: "Driver 6", status:"active", image:"https://bootdey.com/img/Content/avatar/avatar2.png"} ,
+        {id:8,  name: "Driver 7", status:"active", image:"https://bootdey.com/img/Content/avatar/avatar1.png"} ,
+
       ]
     };
   }
@@ -56,7 +54,7 @@ export default class Contacts extends Component {
           extraData={this.state}
           data={this.state.calls}
           keyExtractor = {(item) => {
-            return item.id;
+            return item.id.toString();
           }}
           renderItem={this.renderItem}/>
       </View>

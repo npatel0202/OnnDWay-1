@@ -15,183 +15,193 @@ import {
 import { Header } from "react-native-elements";
 
 
-export default class HomeScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [
-        // {
-        //   id: 1,
-        //   title: "Home",
-        //   image: "https://img.icons8.com/color/70/000000/cottage.png",
-        // },
-        {
-          id: 2,
-          title: "Profile",
-          image:
-            "https://img.icons8.com/color/70/000000/administrator-male.png",
+// export default class HomeScreen extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       data: [
+//         // {
+//         //   id: 1,
+//         //   title: "Home",
+//         //   image: "https://img.icons8.com/color/70/000000/cottage.png",
+//         // },
+//         {
+//           id: 2,
+//           title: "Profile",
+//           image:
+//             "https://img.icons8.com/color/70/000000/administrator-male.png",
 
-        },
-        {
-          id: 3,
-          title: "Orders",
-          image: "https://img.icons8.com/color/48/000000/purchase-order.png",
-        },
-        {
-          id: 4,
-          title: "AddDrivers",
-          image: "https://img.icons8.com/ios-filled/50/4a90e2/add--v1.png",
+//         },
+//         {
+//           id: 3,
+//           title: "Orders",
+//           image: "https://img.icons8.com/color/48/000000/purchase-order.png",
+//         },
+//         {
+//           id: 4,
+//           title: "AddDrivers",
+//           image: "https://img.icons8.com/ios-filled/50/4a90e2/add--v1.png",
          
   
-        },
+//         },
 
-        {
-          id: 5,
-          title: "Track Order",
-          image: "https://img.icons8.com/color-glass/48/000000/track-order.png",
-        },
-        {
-          id: 6,
-          title: "List of Drivers",
-          image: "https://img.icons8.com/color/48/000000/group.png",
-        },
+//         {
+//           id: 5,
+//           title: "Track Order",
+//           image: "https://img.icons8.com/color-glass/48/000000/track-order.png",
+//         },
+//         {
+//           id: 6,
+//           title: "List of Drivers",
+//           image: "https://img.icons8.com/color/48/000000/group.png",
+//         },
 
-        {
-          id: 7,
-          title: "Telephone Order",
-          image: "https://img.icons8.com/ios/50/4a90e2/incoming-call.png",
-        },
-        {
-          id: 8,
-          title: "History ",
-          image:
-            "https://img.icons8.com/color-glass/48/000000/order-history.png",
-        },
-        {
-          id: 9,
-          title: "Canceled Order",
-          image: "https://img.icons8.com/color/48/000000/cancel--v1.png",
-        },
+//         {
+//           id: 7,
+//           title: "Telephone Order",
+//           image: "https://img.icons8.com/ios/50/4a90e2/incoming-call.png",
+//         },
+//         {
+//           id: 8,
+//           title: "History ",
+//           image:
+//             "https://img.icons8.com/color-glass/48/000000/order-history.png",
+//         },
+//         {
+//           id: 9,
+//           title: "Canceled Order",
+//           image: "https://img.icons8.com/color/48/000000/cancel--v1.png",
+//         },
 
-        {
-          id: 10,
-          title: "Setting",
-          image: "https://img.icons8.com/android/24/000000/automatic.png",
-        },
+//         {
+//           id: 10,
+//           title: "Setting",
+//           image: "https://img.icons8.com/android/24/000000/automatic.png",
+//         },
 
-        {
-          id: 11,
-          title: "Logout",
-          image:
-            "https://img.icons8.com/ios-filled/50/4a90e2/logout-rounded-up.png",
-        },
-      ],
-    };
-  }
+//         {
+//           id: 11,
+//           title: "Logout",
+//           image:
+//             "https://img.icons8.com/ios-filled/50/4a90e2/logout-rounded-up.png",
+//         },
+//       ],
+//     };
+//   }
 
-  clickEventListener(item) {
-    if (item.title == "Logout") {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.props.navigation.navigate(
-            "LoginSignup",
-            {},
-            NavigationActions.navigate({
-              routeName: "Login",
-            })
-          );
-        });
+//   clickEventListener(item) {
+//     if (item.title == "Logout") {
+//       firebase
+//         .auth()
+//         .signOut()
+//         .then(() => {
+//           this.props.navigation.navigate(
+//             "LoginSignup",
+//             {},
+//             NavigationActions.navigate({
+//               routeName: "Login",
+//             })
+//           );
+//         });
 
-    }  if ( item.title =="AddDrivers")  {
-      this.props.navigation.navigate(
-        "AddDriver"
-      );
+//     }  if ( item.title =="AddDrivers")  {
+//       this.props.navigation.navigate(
+//         "AddDriver"
+//       );
       
 
-    }
-    if ( item.title =="Profile")  {
-      this.props.navigation.navigate(
-        "profile"
-      );
+//     }
+//     if ( item.title =="Profile")  {
+//       this.props.navigation.navigate(
+//         "profile"
+//       );
       
 
-    }
-    if ( item.title =="List of Drivers")  {
-      this.props.navigation.navigate(
-        "driverslist"
-      );
+//     }
+//     if ( item.title =="List of Drivers")  {
+//       this.props.navigation.navigate(
+//         "driverslist"
+//       );
       
 
-    }
+//     }
 
-                  //  Alert.alert(item.title);
+//                   //  Alert.alert(item.title);
   
-}
+// }
 
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         {/* <Header
+//           centerComponent={{
+//             text: "OnnDWay",
+//             style: {
+//               color: "#fff",
+//               fontSize: 21,
+//               justifyContent: "center",
+//               position: "absolute",
+//               top: -4,
+//               left: -50,
+//               right: 0,
+//               bottom: 0,
+//               justifyContent: "center",
+//               alignItems: "center",
+//             },
+//           }}
+//           rightComponent={{ icon: "home",color:"white"}}         
+//           /> */}
+//         <FlatList
+//           style={styles.list}
+//           contentContainerStyle={styles.listContainer}
+//           data={this.state.data}
+//           horizontal={false}
+//           numColumns={2}
+//           keyExtractor={(item) => {
+//             return item.id;
+//           }}
+//           renderItem={({ item }) => {
+//             return (
+//               <View>
+//                 <TouchableOpacity
+//                   style={styles.card}
+//                   onPress={() => {
+//                     this.clickEventListener(item);
+//                   }}
+//                 >
+//                   <Image
+//                     style={styles.cardImage}
+//                     source={{ uri: item.image }}
+                    
+//                   />
+//                 </TouchableOpacity>
+
+//                 <View style={styles.cardHeader}>
+//                   <View
+//                     style={{ alignItems: "center", justifyContent: "center" }}
+                    
+//                   >
+                    
+//                     <Text style={styles.title}>{item.title}</Text>
+//                   </View>
+//                 </View>
+//               </View>
+//             );
+//           }}
+//         />
+//       </View>
+//     );
+//   }
+// }
+
+export default class HomeScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        {/* <Header
-          centerComponent={{
-            text: "OnnDWay",
-            style: {
-              color: "#fff",
-              fontSize: 21,
-              justifyContent: "center",
-              position: "absolute",
-              top: -4,
-              left: -50,
-              right: 0,
-              bottom: 0,
-              justifyContent: "center",
-              alignItems: "center",
-            },
-          }}
-          rightComponent={{ icon: "home",color:"white"}}         
-          /> */}
-        <FlatList
-          style={styles.list}
-          contentContainerStyle={styles.listContainer}
-          data={this.state.data}
-          horizontal={false}
-          numColumns={2}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
-          renderItem={({ item }) => {
-            return (
-              <View>
-                <TouchableOpacity
-                  style={styles.card}
-                  onPress={() => {
-                    this.clickEventListener(item);
-                  }}
-                >
-                  <Image
-                    style={styles.cardImage}
-                    source={{ uri: item.image }}
-                    
-                  />
-                </TouchableOpacity>
-
-                <View style={styles.cardHeader}>
-                  <View
-                    style={{ alignItems: "center", justifyContent: "center" }}
-                    
-                  >
-                    
-                    <Text style={styles.title}>{item.title}</Text>
-                  </View>
-                </View>
-              </View>
-            );
-          }}
-        />
-      </View>
-    );
-  }
+    <View style={styles.container}>
+      <Text>Nothing</Text>
+    </View>
+  )
+    }
 }
 
 const styles = StyleSheet.create({

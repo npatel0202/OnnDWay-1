@@ -221,6 +221,12 @@ export default class SignUpView extends ValidationComponent {
 
             <Picker.Item label="Retailer" key="2" value="Retailer" />
           </Picker>
+          {this.isFieldInError("PickerValue") &&
+            this.getErrorsInField("PickerValue").map((errorMessage) => (
+              <Text key={errorMessage}>{errorMessage}</Text>
+            ))}
+
+          
 
           <Button
             title="Signup"

@@ -82,13 +82,7 @@ export default class LoginView extends ValidationComponent {
 
 
        // this.submit.clear();
-        this.props.navigation.navigate(
-          "OnnDWay",
-          {},
-          NavigationActions.navigate({
-            routeName: "Home",
-          })
-        );
+        this.props.navigation.navigate("OnnDWay");
         this.emailInput.clear();
         this.passwordInput.clear();
       })
