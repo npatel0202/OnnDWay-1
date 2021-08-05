@@ -9,93 +9,172 @@ import {
   Image,
   Alert,
   ScrollView,
+  TextInput,
   FlatList,
   Icon,
   Button,
 } from "react-native";
 import { Header } from "react-native-elements";
+import ValidationComponent from "react-native-form-validator";
 
-export default class DriverScreen extends Component {
-  render() {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button
-          title="Go to user list"
-          onPress={() => this.props.NavigationActions.navigate('AddDriver')}
-          color="#19AC52"
-        />
-      </View>
-  )
+
+const db = require("../../firebase.config");
+
+export default class DriverScreen extends ValidationComponent {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      drivers:"",
+    };
+  }
+    
+  adddrivers = async () => {
+      
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+  .then(async(userCredential) => {
+    const ref = firebase.firestore().collection("drivers");
+    await ref.add({
+      username: this.state.email,
+      password: this.state.password,
+
+    });
+    this.setState({
+      drivers: "",
+    }); 
+     
+    // Signed in
+    this.props.navigation.navigate(
+      "Home",
+    );  
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ..
+  });
+  };
+  onSignup() {
+    const { email: username, password } = this.state;
+
+    this.validate({
+      email: { email:true, minlength: 3, maxlength: 50, required: true },
+      password: { minlength: 6, maxLength: 12, required: true },
+     
+    });
+    this.setState({ errors: this.getErrorMessages(", ") });
+    if(this.errors.length == 0)
+    {
+      this.adddrivers();
+
     }
-}
+    else{
+      this.props.navigation.navigate(
+        "OnnDWay",
+       
+      );  
+    }
+      }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 0,
-    backgroundColor: "#f6f6f6",
-  },
-  
-  list: {
-    paddingHorizontal: 5,
-    backgroundColor: "#f1e3dd",
-  },
-  listContainer: {
-    alignItems: "center",
-  },
-  /******** card **************/
-  card: {
-    shadowColor: "#474747",
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.37,
-    shadowRadius: 7.49,
-
-    elevation: 12,
-    marginVertical: 20,
-    marginHorizontal: 40,
-    backgroundColor: "#e2e2e2",
-    //flexBasis: '42%',
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  cardHeader: {
-    paddingVertical: 17,
-    paddingHorizontal: 16,
-    borderTopLeftRadius: 1,
-    borderTopRightRadius: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  cardContent: {
-    paddingVertical: 12.5,
-    paddingHorizontal: 16,
-  },
-  cardFooter: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingTop: 12.5,
-    paddingBottom: 25,
-    paddingHorizontal: 16,
-    borderBottomLeftRadius: 1,
-    borderBottomRightRadius: 1,
-  },
-  cardImage: {
-    height: 50,
-    width: 50,
-    alignSelf: "center",
-  },
-  title: {
-    fontSize: 18,
-    flex: 1,
-    alignSelf: "center",
-    color: "black",
-  },
- 
-});
+      render() {
+        return (
+          <View style={styles.container}>
+            <View style={styles.inputContainer}>
+              <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/male-user/ultraviolet/50/3498db'}}/>
+              <TextInput style={styles.inputs}
+                  placeholder="Email"
+                  keyboardType="email-address"
+                  underlineColorAndroid='transparent'
+                  onChangeText={(email) => this.setState({email: email})}/>
+            </View>
+            
+            {this.isFieldInError("email") &&
+                this.getErrorsInField("email").map((errorMessage) => (
+                  <Text key={errorMessage}>{errorMessage}</Text>
+                ))}
+    {/* 
+            <View style={styles.inputContainer}>
+              <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}/>
+              <TextInput style={styles.inputs}
+                  placeholder="Email"
+                  keyboardType="email-address"
+                  underlineColorAndroid='transparent'
+                  onChangeText={(email) => this.setState({email})}/>
+            </View> */}
+            
+            <View style={styles.inputContainer}>
+              <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/key-2/ultraviolet/50/3498db'}}/>
+              <TextInput style={styles.inputs}
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  underlineColorAndroid='transparent'
+                  onChangeText={(password) => this.setState({password})}/>
+            </View>
+            {this.isFieldInError("password") &&
+                this.getErrorsInField("password").map((errorMessage) => (
+                  <Text key={errorMessage}>{errorMessage}</Text>
+                ))}
+     <Button
+                title="Add Driver"
+                style={styles.input}
+                onPress={this.onSignup.bind(this)}
+               //onPress={() => this.addusers()}
+              />
+            {/* <TouchableHighlight style={[styles.buttonContainer, styles.signupButton]}    onPress={this.onSignup.bind(this)}>
+              <Text style={styles.signUpText}>Submit</Text>
+            </TouchableHighlight> */}
+          </View>
+        );
+      }
+    }
+    
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#00b5ec',
+      },
+      inputContainer: {
+          borderBottomColor: '#F5FCFF',
+          backgroundColor: '#FFFFFF',
+          borderRadius:30,
+          borderBottomWidth: 1,
+          width:250,
+          height:45,
+          marginBottom:20,
+          flexDirection: 'row',
+          alignItems:'center'
+      },
+      inputs:{
+          height:45,
+          marginLeft:16,
+          borderBottomColor: '#FFFFFF',
+          flex:1,
+      },
+      inputIcon:{
+        width:30,
+        height:30,
+        marginLeft:15,
+        justifyContent: 'center'
+      },
+      buttonContainer: {
+        height:45,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom:20,
+        width:250,
+        borderRadius:30,
+      },
+      signupButton: {
+        backgroundColor: "#FF4DFF",
+      },
+      signUpText: {
+        color: 'white',
+      }
+    });
+    
