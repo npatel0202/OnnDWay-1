@@ -11,15 +11,20 @@ import {
   ScrollView,
   FlatList,
   Icon,
+  Button,
 } from "react-native";
 import { Header } from "react-native-elements";
 
 export default class DriverScreen extends Component {
   render() {
     return (
-    <View style={styles.container}>
-      <Text>Drivers</Text>
-    </View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button
+          title="Go to user list"
+          onPress={() => this.props.NavigationActions.navigate('AddDriver')}
+          color="#19AC52"
+        />
+      </View>
   )
     }
 }

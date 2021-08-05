@@ -13,264 +13,175 @@ import {
   Icon,
 } from "react-native";
 import { Header } from "react-native-elements";
-
-
-// export default class HomeScreen extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       data: [
-//         // {
-//         //   id: 1,
-//         //   title: "Home",
-//         //   image: "https://img.icons8.com/color/70/000000/cottage.png",
-//         // },
-//         {
-//           id: 2,
-//           title: "Profile",
-//           image:
-//             "https://img.icons8.com/color/70/000000/administrator-male.png",
-
-//         },
-//         {
-//           id: 3,
-//           title: "Orders",
-//           image: "https://img.icons8.com/color/48/000000/purchase-order.png",
-//         },
-//         {
-//           id: 4,
-//           title: "AddDrivers",
-//           image: "https://img.icons8.com/ios-filled/50/4a90e2/add--v1.png",
-         
-  
-//         },
-
-//         {
-//           id: 5,
-//           title: "Track Order",
-//           image: "https://img.icons8.com/color-glass/48/000000/track-order.png",
-//         },
-//         {
-//           id: 6,
-//           title: "List of Drivers",
-//           image: "https://img.icons8.com/color/48/000000/group.png",
-//         },
-
-//         {
-//           id: 7,
-//           title: "Telephone Order",
-//           image: "https://img.icons8.com/ios/50/4a90e2/incoming-call.png",
-//         },
-//         {
-//           id: 8,
-//           title: "History ",
-//           image:
-//             "https://img.icons8.com/color-glass/48/000000/order-history.png",
-//         },
-//         {
-//           id: 9,
-//           title: "Canceled Order",
-//           image: "https://img.icons8.com/color/48/000000/cancel--v1.png",
-//         },
-
-//         {
-//           id: 10,
-//           title: "Setting",
-//           image: "https://img.icons8.com/android/24/000000/automatic.png",
-//         },
-
-//         {
-//           id: 11,
-//           title: "Logout",
-//           image:
-//             "https://img.icons8.com/ios-filled/50/4a90e2/logout-rounded-up.png",
-//         },
-//       ],
-//     };
-//   }
-
-//   clickEventListener(item) {
-//     if (item.title == "Logout") {
-//       firebase
-//         .auth()
-//         .signOut()
-//         .then(() => {
-//           this.props.navigation.navigate(
-//             "LoginSignup",
-//             {},
-//             NavigationActions.navigate({
-//               routeName: "Login",
-//             })
-//           );
-//         });
-
-//     }  if ( item.title =="AddDrivers")  {
-//       this.props.navigation.navigate(
-//         "AddDriver"
-//       );
-      
-
-//     }
-//     if ( item.title =="Profile")  {
-//       this.props.navigation.navigate(
-//         "profile"
-//       );
-      
-
-//     }
-//     if ( item.title =="List of Drivers")  {
-//       this.props.navigation.navigate(
-//         "driverslist"
-//       );
-      
-
-//     }
-
-//                   //  Alert.alert(item.title);
-  
-// }
-
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         {/* <Header
-//           centerComponent={{
-//             text: "OnnDWay",
-//             style: {
-//               color: "#fff",
-//               fontSize: 21,
-//               justifyContent: "center",
-//               position: "absolute",
-//               top: -4,
-//               left: -50,
-//               right: 0,
-//               bottom: 0,
-//               justifyContent: "center",
-//               alignItems: "center",
-//             },
-//           }}
-//           rightComponent={{ icon: "home",color:"white"}}         
-//           /> */}
-//         <FlatList
-//           style={styles.list}
-//           contentContainerStyle={styles.listContainer}
-//           data={this.state.data}
-//           horizontal={false}
-//           numColumns={2}
-//           keyExtractor={(item) => {
-//             return item.id;
-//           }}
-//           renderItem={({ item }) => {
-//             return (
-//               <View>
-//                 <TouchableOpacity
-//                   style={styles.card}
-//                   onPress={() => {
-//                     this.clickEventListener(item);
-//                   }}
-//                 >
-//                   <Image
-//                     style={styles.cardImage}
-//                     source={{ uri: item.image }}
-                    
-//                   />
-//                 </TouchableOpacity>
-
-//                 <View style={styles.cardHeader}>
-//                   <View
-//                     style={{ alignItems: "center", justifyContent: "center" }}
-                    
-//                   >
-                    
-//                     <Text style={styles.title}>{item.title}</Text>
-//                   </View>
-//                 </View>
-//               </View>
-//             );
-//           }}
-//         />
-//       </View>
-//     );
-//   }
-// }
+import {Title} from 'react-native-paper';
 
 export default class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [
+        {id:1, title: "Order 1",  price:"$ 25.00 CAD", image:"https://via.placeholder.com/400x200/FFB6C1/000000"},
+        {id:2, title: "Order 2",  price:"$ 10.13 CAD", image:"https://via.placeholder.com/400x200/FA8072/000000"} ,
+        {id:3, title: "Order 3",  price:"$ 12.12 CAD", image:"https://via.placeholder.com/400x200/87CEEB/000000"}, 
+        {id:4, title: "Order 4",  price:"$ 11.00 CAD", image:"https://via.placeholder.com/400x200/4682B4/000000"}, 
+        
+
+      ]
+    };
+  }
+
+  addProductToCart = () => {
+    Alert.alert('Success', 'The product has been added to your cart')
+  }
   render() {
     return (
-    <View style={styles.container}>
-      <Text>Nothing</Text>
-    </View>
-  )
-    }
+      <View style={styles.container}>
+          <Title>Pending Orders</Title>
+        
+        <FlatList style={styles.list}
+          contentContainerStyle={styles.listContainer}
+          data={this.state.data}
+          horizontal={false}
+          numColumns={2}
+          keyExtractor= {(item) => {
+            return item.id;
+          }}
+          ItemSeparatorComponent={() => {
+            return (
+              <View style={styles.separator}/>
+            )
+          }}
+          renderItem={(post) => {
+            const item = post.item;
+            return (
+              <View style={styles.card}>
+               
+               <View style={styles.cardHeader}>
+                  <View>
+                    <Text style={styles.title}>{item.title}</Text>
+                    <Text style={styles.price}>{item.price}</Text>
+                  </View>
+                </View>
+
+                <Image style={styles.cardImage} source={{uri:item.image}}/>
+                
+                <View style={styles.cardFooter}>
+                  <View style={styles.socialBarContainer}>
+                    <View style={styles.socialBarSection}>
+                      <TouchableOpacity style={styles.socialBarButton} onPress={() => this.addProductToCart()}>
+                        <Image style={styles.icon} source={{uri: 'https://img.icons8.com/nolan/96/3498db/add-shopping-cart.png'}}/>
+                        <Text style={[styles.socialBarLabel, styles.buyNow]}>Buy Now</Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View style={styles.socialBarSection}>
+                      <TouchableOpacity style={styles.socialBarButton}>
+                        <Image style={styles.icon} source={{uri: 'https://img.icons8.com/color/50/000000/hearts.png'}}/>
+                        <Text style={styles.socialBarLabel}>25</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </View>
+                
+              </View>
+            )
+          }}/>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 0,
-    backgroundColor: "#f6f6f6",
+  container:{
+    flex:1,
+    marginTop:20,
   },
-  
   list: {
     paddingHorizontal: 5,
-    backgroundColor: "#f1e3dd",
+    backgroundColor:"#E6E6E6",
   },
-  listContainer: {
-    alignItems: "center",
+  listContainer:{
+    alignItems:'center'
+  },
+  separator: {
+    marginTop: 10,
   },
   /******** card **************/
-  card: {
-    shadowColor: "#474747",
+  card:{
+    shadowColor: '#00000021',
     shadowOffset: {
-      width: 0,
-      height: 6,
+      width: 2
     },
-    shadowOpacity: 0.37,
-    shadowRadius: 7.49,
-
-    elevation: 12,
-    marginVertical: 20,
-    marginHorizontal: 40,
-    backgroundColor: "#e2e2e2",
-    //flexBasis: '42%',
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    alignItems: "center",
-    justifyContent: "center",
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    marginVertical: 8,
+    backgroundColor:"white",
+    flexBasis: '47%',
+    marginHorizontal: 5,
   },
   cardHeader: {
     paddingVertical: 17,
     paddingHorizontal: 16,
     borderTopLeftRadius: 1,
     borderTopRightRadius: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   cardContent: {
     paddingVertical: 12.5,
     paddingHorizontal: 16,
   },
-  cardFooter: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  cardFooter:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingTop: 12.5,
     paddingBottom: 25,
     paddingHorizontal: 16,
     borderBottomLeftRadius: 1,
     borderBottomRightRadius: 1,
   },
-  cardImage: {
-    height: 50,
-    width: 50,
-    alignSelf: "center",
-  },
-  title: {
-    fontSize: 18,
+  cardImage:{
     flex: 1,
-    alignSelf: "center",
-    color: "black",
+    height: 150,
+    width: null,
   },
- 
-});
+  /******** card components **************/
+  title:{
+    fontSize:18,
+    flex:1,
+  },
+  price:{
+    fontSize:16,
+    color: "green",
+    marginTop: 5
+  },
+  buyNow:{
+    color: "purple",
+  },
+  icon: {
+    width:25,
+    height:25,
+  },
+  /******** social bar ******************/
+  socialBarContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    flex: 1
+  },
+  socialBarSection: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flex: 1,
+  },
+  socialBarlabel: {
+    marginLeft: 8,
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+  },
+  socialBarButton:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+});  
+                                  
