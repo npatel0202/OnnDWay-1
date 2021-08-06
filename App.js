@@ -25,6 +25,7 @@ import UserProfileView from "./src/pages/profile";
 import Contacts from "./src/pages/Driverlist";
 import GetDriverScreen from  "./src/pages/GetDrivers";
 import UserDetailScreen from "./src/pages/UserDetailScreen";
+import GetOrdersScreen from "./src/pages/GetOrders";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -110,6 +111,12 @@ export default function App(props) {
           name="userdetail"
           component={UserDetailScreen}
         />
+        <Stack.Screen
+          options={{headerLeft: null}}
+          name="GetOrders"
+          component={GetOrdersScreen}
+        />
+        
         
       </Stack.Navigator>
     </NavigationContainer>
