@@ -36,7 +36,7 @@ class GetOrdersScreen extends Component {
             //       }}/>
                 //   );
                  return (<Text key={res.id}  onPress={() => {
-                    this.props.navigation.navigate('userdetail', {
+                    this.props.navigation.navigate('orderdetail', {
                          userkey: res.id
                        });
                      }}>{customername}{email}{customeraddress}{totalprice} 

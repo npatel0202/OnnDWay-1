@@ -26,6 +26,7 @@ import Contacts from "./src/pages/Driverlist";
 import GetDriverScreen from  "./src/pages/GetDrivers";
 import UserDetailScreen from "./src/pages/UserDetailScreen";
 import GetOrdersScreen from "./src/pages/GetOrders";
+import OrderDetailScreen from "./src/pages/OrderDetailScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -115,6 +116,11 @@ export default function App(props) {
           options={{headerLeft: null}}
           name="GetOrders"
           component={GetOrdersScreen}
+        />
+         <Stack.Screen
+          options={{headerLeft: null}}
+          name="orderdetail"
+          component={OrderDetailScreen}
         />
         
         
