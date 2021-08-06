@@ -20,14 +20,43 @@ export default class HomeScreen extends Component {
     super(props);
     this.state = {
       data: [
-        {id:1, title: "Order 1",  price:"$ 25.00 CAD", image:"https://via.placeholder.com/400x200/FFB6C1/000000"},
-        {id:2, title: "Order 2",  price:"$ 10.13 CAD", image:"https://via.placeholder.com/400x200/FA8072/000000"} ,
-        {id:3, title: "Order 3",  price:"$ 12.12 CAD", image:"https://via.placeholder.com/400x200/87CEEB/000000"}, 
-        {id:4, title: "Order 4",  price:"$ 11.00 CAD", image:"https://via.placeholder.com/400x200/4682B4/000000"}, 
-        
+        {id:1, title: "Order 1",  price:"$ 25.00 CAD", dname: "John" ,image:"https://via.placeholder.com/400x200/FFB6C1/000000"},
+        {id:2, title: "Order 2",  price:"$ 10.13 CAD", dname: "Allen" ,image:"https://via.placeholder.com/400x200/FA8072/000000"} ,
+        {id:3, title: "Order 3",  price:"$ 12.12 CAD", dname: "Lucas",image:"https://via.placeholder.com/400x200/87CEEB/000000"}, 
+        {id:4, title: "Order 4",  price:"$ 11.00 CAD", dname: "Rami",image:"https://via.placeholder.com/400x200/4682B4/000000"}, 
+         ],
+         calls: [
+          {id:1,  name: "Jake",    status:"active"},
+          {id:2,  name: "John",   status:"OnnDWay"} ,
+          {id:3,  name: "Lucas",  status:"OnnDWay"} ,
+          {id:4,  name: "Sue",  status:"active"} ,
+          {id:5,  name: "Rami",   status:"OnnDWay"} ,
+          {id:6,  name: "Norman", status:"active"} ,
+          {id:8,  name: "Allen", status:"OnnDWay"} ,
+          ]
 
-      ]
     };
+  }
+
+  renderItem = ({item}) => {
+    return (
+      
+      <TouchableOpacity>
+            <View style={styles.row}>
+        
+          <Image source={{ uri: item.image }} style={styles.pic} />
+          <View>
+             <View style={styles.nameContainer}>
+              <Text style={styles.nameTxt} numberOfLines={1} ellipsizeMode="tail">{item.name}</Text>
+              <Text style={styles.msgTxt}>{item.status}</Text>
+           </View> 
+            {/* <View style={styles.msgContainer}>
+              <Text style={styles.msgTxt}>{item.status}</Text>
+            </View> */}
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
   }
 
   addProductToCart = () => {
@@ -35,6 +64,10 @@ export default class HomeScreen extends Component {
   }
   render() {
     return (
+      <ScrollView style={styles.scrollView}
+      keyboardDismissMode="interactive"
+      keyboardShouldPersistTaps="handled"
+       >
       <View style={styles.container}>
           <Title>Pending Orders</Title>
         
@@ -44,7 +77,7 @@ export default class HomeScreen extends Component {
           horizontal={false}
           numColumns={2}
           keyExtractor= {(item) => {
-            return item.id;
+            return item.id.toString();
           }}
           ItemSeparatorComponent={() => {
             return (
@@ -60,32 +93,41 @@ export default class HomeScreen extends Component {
                   <View>
                     <Text style={styles.title}>{item.title}</Text>
                     <Text style={styles.price}>{item.price}</Text>
-                  </View>
+                    </View>
                 </View>
-
-                <Image style={styles.cardImage} source={{uri:item.image}}/>
+                
+                
+                
                 
                 <View style={styles.cardFooter}>
                   <View style={styles.socialBarContainer}>
                     <View style={styles.socialBarSection}>
                       <TouchableOpacity style={styles.socialBarButton} onPress={() => this.addProductToCart()}>
-                        <Image style={styles.icon} source={{uri: 'https://img.icons8.com/nolan/96/3498db/add-shopping-cart.png'}}/>
-                        <Text style={[styles.socialBarLabel, styles.buyNow]}>Buy Now</Text>
+                        <Image style={styles.icon} source={{uri: 'https://img.icons8.com/nolan/96/3498db/driver.png'}}/>
+                        <Text style={[styles.socialrBarLabel, styles.buyNow]}>Driver: </Text>
+                        
+                    <Text style={styles.socialBarlabel}>{item.dname}</Text>
                       </TouchableOpacity>
                     </View>
-                    <View style={styles.socialBarSection}>
-                      <TouchableOpacity style={styles.socialBarButton}>
-                        <Image style={styles.icon} source={{uri: 'https://img.icons8.com/color/50/000000/hearts.png'}}/>
-                        <Text style={styles.socialBarLabel}>25</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
+                </View>
                 </View>
                 
               </View>
             )
           }}/>
+          <View style={{ flex: 1 }} >
+        <FlatList 
+          extraData={this.state}
+          data={this.state.calls}
+          keyExtractor = {(item) => {
+            return item.id.toString();
+          }}
+          renderItem={this.renderItem}/>
       </View>
+                
+      
+      </View>
+      </ScrollView>
     );
   }
 }
@@ -94,10 +136,11 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     marginTop:20,
+    backgroundColor: "orange"
   },
   list: {
     paddingHorizontal: 5,
-    backgroundColor:"#E6E6E6",
+    //backgroundColor:"",
   },
   listContainer:{
     alignItems:'center'
@@ -114,7 +157,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 4,
     marginVertical: 8,
-    backgroundColor:"white",
+    backgroundColor:"#ffe4c4",
     flexBasis: '47%',
     marginHorizontal: 5,
   },
@@ -154,6 +197,13 @@ const styles = StyleSheet.create({
     color: "green",
     marginTop: 5
   },
+
+  name:{
+    fontSize:16,
+    color: "green",
+    marginTop: 5
+  },
+  
   buyNow:{
     color: "purple",
   },
@@ -182,6 +232,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+//Active Drivers
+  nameContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 280,
+  },
+  nameTxt: {
+    //marginLeft: 15,
+    fontWeight: '600',
+    color: '#222',
+    fontSize: 20,
+    width:170,
+    height: 50,
+  },
+  mblTxt: {
+    fontWeight: '200',
+    color: '#777',
+    fontSize: 13,
+  },
+  msgTxt: {
+    fontWeight: '400',
+    color: '#008B8B',
+    fontSize: 20,
+    marginLeft: 10,
+  },
 });  
                                   
