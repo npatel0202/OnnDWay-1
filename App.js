@@ -12,7 +12,6 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { LogBox } from "react-native";
 LogBox.ignoreLogs(['It appears that you are using old version of react-navigation library. Please update @react-navigation/bottom-tabs, @react-navigation/stack and @react-navigation/drawer to version 5.10.0 or above to take full advantage of new functionality added to react-native-screens',
 "Setting a timer for a long period of time, i.e. multiple minutes, is a performance and correctness issue on Android as it keeps the timer module awake, and timers can only be called when the app is in the foreground. See https://github.com/facebook/react-native/issues/12981 for more info.(Saw setTimeout with duration 2922790ms)"])
-
 import SignUpView from "./src/pages/Signup";
 import LoginView from "./src/pages/login";
 import HomeScreen from "./src/pages/HomeScreen";
@@ -24,6 +23,8 @@ import TabViewComponent from "react-native-elements/dist/tab/TabView";
 import AddDriverView from "./src/pages/AddDrivers";
 import UserProfileView from "./src/pages/profile";
 import Contacts from "./src/pages/Driverlist";
+import GetDriverScreen from  "./src/pages/GetDrivers";
+import UserDetailScreen from "./src/pages/UserDetailScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -99,6 +100,17 @@ export default function App(props) {
           name="OnnDWay"
           component={OnnDWay}
         />
+        <Stack.Screen
+          options={{headerLeft: null}}
+          name="GetDriver"
+          component={GetDriverScreen}
+        />
+        <Stack.Screen
+          options={{headerLeft: null}}
+          name="userdetail"
+          component={UserDetailScreen}
+        />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
