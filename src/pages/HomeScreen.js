@@ -10,10 +10,15 @@ import {
   Alert,
   ScrollView,
   FlatList,
+  SafeAreaView,  
   Icon,
 } from "react-native";
 import { Header } from "react-native-elements";
 import {Title} from 'react-native-paper';
+
+import { LogBox } from 'react-native';
+
+
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -37,7 +42,9 @@ export default class HomeScreen extends Component {
 
     };
   }
-
+  componentDidMount() {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+}
   renderItem = ({item}) => {
     return (
       
@@ -64,6 +71,7 @@ export default class HomeScreen extends Component {
   }
   render() {
     return (
+
       <ScrollView style={styles.scrollView}
       keyboardDismissMode="interactive"
       keyboardShouldPersistTaps="handled"
@@ -76,6 +84,7 @@ export default class HomeScreen extends Component {
           data={this.state.data}
           horizontal={false}
           numColumns={2}
+          
           keyExtractor= {(item) => {
             return item.id.toString();
           }}
@@ -128,6 +137,7 @@ export default class HomeScreen extends Component {
       
       </View>
       </ScrollView>
+
     );
   }
 }
