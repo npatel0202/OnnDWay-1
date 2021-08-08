@@ -23,15 +23,6 @@ import { LogBox } from "react-native";
 const db = require("../../firebase.config");
 
 class OrderScreen extends Component {
-  //   render() {
-  //     return (
-  //     <View style={styles.container}>
-  //       <Text>Orders</Text>
-  //     </View>
-  //   )
-  //     }
-  // }
-
   constructor() {
     super();
     this.dbref = firebase.firestore().collection("orders");
@@ -63,7 +54,7 @@ class OrderScreen extends Component {
       this.setState({
         isLoading: true,
       });
-      this.dbRef
+      this.dbref
         .add({
           customername: this.state.customername,
           email: this.state.email,

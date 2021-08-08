@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Alert,
   Pressable,
+  ImageBackground,
   Image,
   ScrollView,
   SafeAreaView,
@@ -24,7 +25,7 @@ import SignUpView from "./Signup";
 import { useNavigation } from "@react-navigation/native";
 import firebase from "firebase";
 
-export default class LoginView extends ValidationComponent {
+export default class DriverLogin extends ValidationComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,48 +36,12 @@ export default class LoginView extends ValidationComponent {
     };
   }
 
-  // getusers = async () => {
-  //   const ref = firebase.firestore().collection("users");
-  //   await ref.add({
-  //     email: this.state.email,
-  //     password: this.state.password,
-
-  //   });
-  //   this.setState({
-  //     users: "",
-  //   });}
-
-  // onLogin() {
-  //   this.validate({
-  //     email: { email: true, required: true },
-  //     password: { minlength: 6, maxLength: 12, required: true,},
-  //   });
-  //   this.setState({ errors: this.getErrorMessages(", ") });
-  //   if(this.errors.length == 0)
-  //   {
-  //     this.props.navigation.navigate(
-  //       "AfterLogin",
-  //       {},
-  //       NavigationActions.navigate({
-  //         routeName: "Home",
-  //       })
-  //     );
-
-  //   }
-  //   else{
-  //     this.props.navigation.navigate(
-  //       "LoginSignup",
-  //       {},
-  //       NavigationActions.navigate({
-  //         routeName: "Login",
-  //       })
-  //     );
-  //   }
-  // }
+ 
   onLogin() {
     const { email, password } = this.state;
     console.log(email, password);
     firebase
+      .firestore()
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
@@ -102,10 +67,10 @@ export default class LoginView extends ValidationComponent {
           //contentContainerStyle={{ flex: 1 }}
         >
           <View style={styles.container}>
-            <Image
-              style={styles.stretch}
-              source={require("./../images/splash.jpg")}
-            />
+            
+ <ImageBackground source={require("./../images/map.jpg")} resizeMode="cover"  style={styles.stretch}>
+      
+    </ImageBackground>
 
             <TouchableOpacity style={styles.title}>
               <Title>Welcome to OnnDWay</Title>
@@ -161,16 +126,10 @@ export default class LoginView extends ValidationComponent {
               onPress={() => this.onLogin()}
               ref={input => { this.submit = input }}
             />           
-             <Pressable
+             {/* <Pressable
         onPress={() => {
-          this.props.navigation.navigate(
-                  "DriverLogin",
-                  {},
-                  NavigationActions.navigate({
-                    routeName: "DriverLogin",
-                  })
-                );
-
+               console.log("Hello");
+               
         }}
         >
         {({ pressed }) => (
@@ -178,7 +137,7 @@ export default class LoginView extends ValidationComponent {
             {pressed ? 'Pressed!' : 'Driver\'s Login'} 
           </Text>
         )}
-      </Pressable>
+      </Pressable> */}
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -190,7 +149,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#B0E0E6",
+    backgroundColor: "#FF6F61",
   },
   title: {
     marginBottom: 30,
