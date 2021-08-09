@@ -41,14 +41,13 @@ export default class DriverLogin extends ValidationComponent {
     const { email, password } = this.state;
     console.log(email, password);
     firebase
-      .firestore()
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
 
 
        // this.submit.clear();
-        this.props.navigation.navigate("OnnDWay");
+        this.props.navigation.navigate("DriverAfterLogin");
         this.emailInput.clear();
         this.passwordInput.clear();
       })

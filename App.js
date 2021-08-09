@@ -28,6 +28,7 @@ import UserDetailScreen from "./src/pages/UserDetailScreen";
 import GetOrdersScreen from "./src/pages/GetOrders";
 import OrderDetailScreen from "./src/pages/OrderDetailScreen";
 import DriverLogin from "./src/pages/DriversHomePage";
+import DriverAfterLogin from "./src/pages/DriverAfterLogin";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -127,6 +128,11 @@ export default function App(props) {
           options={{headerLeft: null}}
           name="DriverLogin"
           component={DriverLogin}
+        />
+        <Stack.Screen
+          options={{headerLeft: null}}
+          name="DriverAfterLogin"
+          component={DriverAfterLogin}
         />
         
         
