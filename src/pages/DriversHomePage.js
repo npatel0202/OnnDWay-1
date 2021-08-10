@@ -36,23 +36,26 @@ export default class DriverLogin extends ValidationComponent {
     };
   }
 
- 
   onLogin() {
     const { email, password } = this.state;
     console.log(email, password);
     firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-
-
-       // this.submit.clear();
-        this.props.navigation.navigate("DriverAfterLogin");
-        this.emailInput.clear();
-        this.passwordInput.clear();
+      .firestore()
+      .collection("drivers")
+      .where("email", "==", this.state.email)
+      .where("password", "==", this.state.password)
+      .get()
+      .then((snap) => {
+        if (snap.docs.length > 0) {
+          // this.submit.clear();
+          this.props.navigation.navigate("DriverAfterLogin");
+          this.emailInput.clear();
+          this.passwordInput.clear();
+        } else {
+          alert('Not Registered');
+        }
       })
-      .catch((error) => {        
-
+      .catch((error) => {
         Alert.alert(error.message);
       });
   }
@@ -66,10 +69,11 @@ export default class DriverLogin extends ValidationComponent {
           //contentContainerStyle={{ flex: 1 }}
         >
           <View style={styles.container}>
-            
- <ImageBackground source={require("./../images/map.jpg")} resizeMode="cover"  style={styles.stretch}>
-      
-    </ImageBackground>
+            <ImageBackground
+              source={require("./../images/map.jpg")}
+              resizeMode="cover"
+              style={styles.stretch}
+            ></ImageBackground>
 
             <TouchableOpacity style={styles.title}>
               <Title>Welcome to OnnDWay</Title>
@@ -87,7 +91,9 @@ export default class DriverLogin extends ValidationComponent {
                 placeholder="Email"
                 name="email"
                 underlineColorAndroid="transparent"
-                ref={input => { this.emailInput = input }}
+                ref={(input) => {
+                  this.emailInput = input;
+                }}
                 onChangeText={(val) => this.setState({ email: val })}
               />
             </View>
@@ -108,7 +114,9 @@ export default class DriverLogin extends ValidationComponent {
                 name="password"
                 secureTextEntry={true}
                 underlineColorAndroid="transparent"
-                ref={input => { this.passwordInput = input }}
+                ref={(input) => {
+                  this.passwordInput = input;
+                }}
                 onChangeText={(val) => this.setState({ password: val })}
               />
             </View>
@@ -123,9 +131,11 @@ export default class DriverLogin extends ValidationComponent {
               //onPress={this.onLogin.bind(this)}
 
               onPress={() => this.onLogin()}
-              ref={input => { this.submit = input }}
-            />           
-             {/* <Pressable
+              ref={(input) => {
+                this.submit = input;
+              }}
+            />
+            {/* <Pressable
         onPress={() => {
                console.log("Hello");
                

@@ -216,6 +216,7 @@ class DriverScreen extends Component {
         name: this.state.name,
         email: this.state.email,
         mobile: this.state.mobile,
+        password:"12345678",
       }).then((res) => {
         this.setState({
           name: '',

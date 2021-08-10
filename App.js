@@ -35,31 +35,31 @@ const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 
-// const LoginSignup = (props) => {
-//    return (
-//     <Tab.Navigator
-//     tabBarOptions={{
-//       keyboardHidesTabBar:true,
-//       labelPosition: "beside-icon",
-//       activeTintColor: "white",
-//       style: {
-//       backgroundColor: "#34568B",
-//     },
-//     labelStyle: {
-//       fontSize: 20,
-//     },
-//     tabStyle: {
-//       fontSize: 10,
-//     },
-//   }}
-// >
-//       <Tab.Screen name="Login"  component={LoginView} />
-//       <Tab.Screen name="SignUp" component={SignUpView} />
+const LoginSignup = (props) => {
+   return (
+    <Tab.Navigator
+    tabBarOptions={{
+      keyboardHidesTabBar:true,
+      labelPosition: "beside-icon",
+      activeTintColor: "white",
+      style: {
+      backgroundColor: "#34568B",
+    },
+    labelStyle: {
+      fontSize: 20,
+    },
+    tabStyle: {
+      fontSize: 10,
+    },
+  }}
+>
+      <Tab.Screen name="Login"  component={LoginView} />
+      <Tab.Screen name="SignUp" component={SignUpView} />
 
-//     </Tab.Navigator>
-//    )
+    </Tab.Navigator>
+   )
 
-// }
+}
 
 const OnnDWay = () => {
   return (
@@ -98,7 +98,7 @@ export default function App(props) {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen options={{headerShown: false}} name="LoginSignup" component={LoginSignup} />  */}
+        <Stack.Screen options={{headerShown: false}} name="LoginSignup" component={LoginSignup} /> 
         <Stack.Screen
           options={{headerLeft: null}}
           name="OnnDWay"
