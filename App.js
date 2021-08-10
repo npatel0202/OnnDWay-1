@@ -89,6 +89,7 @@ const OnnDWay = () => {
       <Drawer.Screen name="Driver" component={DriverScreen} />
       <Drawer.Screen name="Order" component={OrderScreen} />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
+      <Drawer.Screen name="Logout" component={Logout} />
 
       {/* add new here.................................... */}
     </Drawer.Navigator>
