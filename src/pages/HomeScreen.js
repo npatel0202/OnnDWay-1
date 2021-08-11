@@ -8,7 +8,8 @@ import {
   item,
   Platform,
   ImageBackground,
-  TouchableOpacity
+  TouchableOpacity,
+  Button,
 } from "react-native";
 
 import { FAB } from "react-native-paper";
@@ -24,15 +25,30 @@ export default class HomeScreen extends Component {
     };
   }
 
-  dialCall = (number) => {
-    let phoneNumber = "";
-    if (Platform.OS === "android") {
-      phoneNumber = `tel:${number}`;
-    } else {
-      phoneNumber = `telprompt:${number}`;
-    }
-    Linking.openURL(phoneNumber);
-  };
+  dialCall = () => {
+  //   let phoneNumber = "";
+  //   if (Platform.OS === "android") {
+  //     phoneNumber = `tel:${number}`;
+  //   } else {
+  //     phoneNumber = `telprompt:${number}`;
+  //   }
+  //   Linking.openURL(phoneNumber);
+  // };
+  this.props.navigation.navigate("GetDriver",{},
+  
+  NavigationActions.navigate({
+    routeName: "GetDriver",})
+  
+);}
+
+dialCall1 = () => {
+  this.props.navigation.navigate("GetOrders",{},
+  
+  NavigationActions.navigate({
+    routeName: "GetOrders",})
+  
+);
+}
 
   render() {
     return (
@@ -55,17 +71,42 @@ export default class HomeScreen extends Component {
 
 source = {require('../images/img.png')}
 style={{resizeMode: "center", width: "100%", height: "90%" }} ></ImageBackground>
-        <FAB
-          style={styles.FAB}
+         {/* <FAB 
+         style={styles.FAB}
           large
           icon="plus"
           onPress={() => {
             this.dialCall();
           }}
         />
+        
+        <FAB
+          style={styles.FAB1}
+          large
+          icon="minus"
+          onPress={() => {
+            this.dialCall1();
+          }}
+        /> */}
+<View style={styles.inputs}/>
+              <Button
+              title="Driver List"
+              style={styles.inputs1}
+              //onPress={this.onLogin.bind(this)}
+
+              onPress={() => this.dialCall()}
+              />
+<View style={styles.inputs1}/>
+              <Button
+              title="Order List"
+              style={styles.inputs1}
+              //onPress={this.onLogin.bind(this)}
+
+              onPress={() => this.dialCall1()}
+              />
+
         </View>
 
-     // </MapView>
     );
   }
 }
@@ -86,5 +127,38 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems:"center",
     justifyContent: "center",
+  },
+  FAB1: {
+    position: "absolute",
+    marginBottom: 80,
+    left: 30,
+    bottom: -50,
+    marginLeft: 10,
+    width: 50,
+    height: 50,
+    alignItems:"center",
+    justifyContent: "center",
+  },
+  // headerText: {
+  //   fontSize: 20,
+  //   textAlign: "center",
+  //   margin: 10,
+  //   fontWeight: "bold"
+  // },
+  inputs: {
+    height: 45,
+    marginLeft: 16,
+    marginBottom:-20,
+    borderBottomColor: "#FFFFFF",
+    flex: 1,
+    fontSize: 20,
+  },
+  inputs1: {
+    height: 45,
+    marginRight: 16,
+    marginBottom:20,
+    borderBottomColor: "#FFFFFF",
+    flex: 1,
+    fontSize: 20,
   },
 });

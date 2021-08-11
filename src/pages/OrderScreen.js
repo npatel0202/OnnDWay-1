@@ -69,13 +69,13 @@ class OrderScreen extends Component {
             totalprice: "",
             isLoading: false,
           });
-          this.props.navigation.navigate(
-            "GetOrders",
-            {},
-            NavigationActions.navigate({
-              routeName: "GetOrders",
-            })
-          );
+          // // this.props.navigation.navigate(
+          // //   "GetOrders",
+          // //   {},
+          // //   NavigationActions.navigate({
+          // //     routeName: "GetOrders",
+          // //   })
+          // );
         })
         .catch((err) => {
           console.error("Error found: ", err);
