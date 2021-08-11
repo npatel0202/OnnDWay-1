@@ -5,8 +5,12 @@ import {
   View,
   Image,
 } from 'react-native';
-
+import firebase from 'firebase';
+import { get } from 'lodash';
 const db = require("../../firebase.config");
+
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Setting a timer for a long period of time, i.e. multiple minutes, is a performance and correctness issue on Android as it keeps the timer module awake, and timers can only be called when the app is in the foreground. See https://github.com/facebook/react-native/issues/12981 for more info.']);
 
 export default class UserProfileView extends React.Component {
 
@@ -15,19 +19,27 @@ export default class UserProfileView extends React.Component {
         this.state = {
           fullname: "",
           email: "",
-
+          userData: {
+            fullname: "",
+            email: ""
+          },
           users:"",
         };
       }
 
-      addusers = async () => {
+    componentDidMount(){
       
    
     const user = firebase.auth().currentUser;
+    firebase.firestore().collection("users").where('email', '==', user.providerData[0].email).get().then(userData => {
+        const userDetail = userData.docs[0];
+        this.setState({fullname: userDetail.data().fullName, email: userDetail.data().email});
+    });
+    
     if (user !== null) {
       // The user object has basic properties such as display name, email, etc.
       const displayName = user.displayName;
-      const email = user.email;
+      // this.state.email = user.email;
       //const photoURL = user.photoURL;
      // const emailVerified = user.emailVerified;
     
@@ -47,9 +59,9 @@ export default class UserProfileView extends React.Component {
                 <Image style={styles.avatar}
                   source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
 
-                <Text style={styles.name}>John Doe </Text>
-                <Text style={styles.userInfo}>jhonnydoe@mail.com </Text>
-                <Text style={styles.userInfo}>Thunder Bay</Text>
+                <Text style={styles.name}>{this.state.fullname}</Text>
+                <Text style={styles.userInfo}>{ this.state.email }</Text>
+                
             </View>
           </View> 
 

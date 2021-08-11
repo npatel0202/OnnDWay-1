@@ -80,6 +80,7 @@ export default class LoginView extends ValidationComponent {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
+        this.setState({email:"", password:""});
 
 
        // this.submit.clear();
@@ -142,6 +143,7 @@ export default class LoginView extends ValidationComponent {
                 style={styles.inputs}
                 placeholder="Password"
                 name="password"
+                
                 secureTextEntry={true}
                 underlineColorAndroid="transparent"
                 ref={input => { this.passwordInput = input }}
