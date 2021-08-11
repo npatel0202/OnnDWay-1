@@ -50,7 +50,7 @@ export default class HomeScreen extends Component {
         //   longitudeDelta: 0.0421,
         // }}
      // >
-     <view>   
+     <View>   
          <ImageBackground
 
 source = {require('../images/img.png')}
@@ -63,7 +63,7 @@ style={{resizeMode: "center", width: "100%", height: "90%" }} ></ImageBackground
             this.dialCall();
           }}
         />
-        </view>
+        </View>
 
      // </MapView>
     );
@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     marginBottom: 80,
     right: 30,
-    bottom: 30,
-    marginRight: 40,
+    bottom: -50,
+    marginRight: 10,
     width: 50,
     height: 50,
     alignItems:"center",

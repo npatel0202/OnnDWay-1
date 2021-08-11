@@ -49,7 +49,7 @@ export default class UserProfileView extends React.Component {
 
                 <Text style={styles.name}>John Doe </Text>
                 <Text style={styles.userInfo}>jhonnydoe@mail.com </Text>
-                <Text style={styles.userInfo}>Florida </Text>
+                <Text style={styles.userInfo}>Thunder Bay</Text>
             </View>
           </View> 
 

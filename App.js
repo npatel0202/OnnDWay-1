@@ -92,14 +92,18 @@ const OnnDWay = () => {
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="Driver" component={DriverScreen} />
       <Drawer.Screen name="Order" component={OrderScreen} />
+      <Drawer.Screen name="Profile" component={UserProfileView} />
       <Drawer.Screen name="Logout" component={Logout} />
       {/* <Drawer.Screen name="Logout" component={Logout}   onPress={() => navigation.navigate('LoginSignup')} /> */}
  
       {/* add new here.................................... */}
     </Drawer.Navigator>
     
+    
   );
 };
+
+
 export default function App(props) {
   return (
     <NavigationContainer>
@@ -139,6 +143,7 @@ export default function App(props) {
           options={{headerLeft: null}}
           name="DriverAfterLogin"
           component={DriverAfterLogin}
+          tabBarOptions
         />
         
         
