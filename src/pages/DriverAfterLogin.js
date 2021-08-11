@@ -1,4 +1,7 @@
-import React from 'react';
+import React from "react";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationActions } from "react-navigation";
+
 
 import {
   View,
@@ -7,41 +10,45 @@ import {
   StyleSheet,
   SafeAreaView,
   ImageBackground,
-} from 'react-native';
+} from "react-native";
 
-const DriverAfterLogin = () => {
+const Drawer = createDrawerNavigator();
+
+const home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
-        style={{flex: 1}}
-        source={{
-          uri:
-            'https://www.toptal.com/designers/subtlepatterns/patterns/moroccan-flower-dark.png',
-        }}>
+        source={require("../images/test.jpg")}
+        style={{ resizeMode: "cover", width: "100%", height: "80%" }}
+      >
         <View style={styles.container}>
-          <Text style={styles.title}>
-
-          </Text>
+          <Text style={styles.title}></Text>
           <View style={styles.contentCenter}>
-            {/* <Image
-              source={{
-                uri:
-                  'https://media.giphy.com/media/fVWPYi4EoLATm/giphy.gif',
-              }}
-              style={{
-                width: 390,
-                height: 300,
-                marginBottom: 50
-
-              }}
-            /> */}
-            <Text style={styles.textStyle}>
-              Welcome to OnnDway Driver page
-            </Text>
+            <Text style={styles.textStyle}></Text>
           </View>
         </View>
       </ImageBackground>
     </SafeAreaView>
+  );
+};
+
+const logout = ({ route, navigation }) => {
+  navigation.navigate(
+    "LoginSignup",
+    {},
+    NavigationActions.navigate({
+      routeName: "Login",
+    })
+  );
+  return null;
+};
+
+const DriverAfterLogin = () => {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Home" component={home}></Drawer.Screen>
+      <Drawer.Screen name="Logout" component={logout}></Drawer.Screen>
+    </Drawer.Navigator>
   );
 };
 export default DriverAfterLogin;
@@ -52,17 +59,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     padding: 15,
-    color: 'white',
-    fontWeight: 'bold',    
-    textAlign: 'center',    
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
   },
   contentCenter: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   textStyle: {
-    color: 'white',
+    color: "white",
     padding: 10,
-    fontSize:20
-  }
+    fontSize: 20,
+  },
 });
