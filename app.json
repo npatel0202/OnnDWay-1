@@ -3,6 +3,7 @@
     "name": "OnTheWay",
     "slug": "OnTheWay",
     "version": "1.0.0",
+    "plugins": ["@react-native-mapbox-gl/maps"],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

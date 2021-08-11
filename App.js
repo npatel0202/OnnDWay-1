@@ -65,6 +65,7 @@ const LoginSignup = (props) => {
 }
 
 
+
 const OnnDWay = () => {
   return (
     <Drawer.Navigator initialRouteName="Home" drawerPosition="left" >
@@ -142,8 +143,7 @@ export default function App(props) {
         <Stack.Screen
           options={{headerLeft: null}}
           name="DriverAfterLogin"
-          component={DriverAfterLogin}
-          tabBarOptions
+          component={DriverAfterLogin}                   
         />
         
         
