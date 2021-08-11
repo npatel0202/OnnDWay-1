@@ -35,11 +35,11 @@ class GetOrdersScreen extends Component {
             //         });
             //       }}/>
                 //   );
-                 return (<Text key={res.id}  onPress={() => {
+                 return (<Text style={styles.SquareShapeView} key={res.id}  onPress={() => {
                     this.props.navigation.navigate('orderdetail', {
                          userkey: res.id
                        });
-                     }}>{customername}{email}{customeraddress}{totalprice} 
+                     }}>Customer Name: {customername} Email: {email} Customer Address: {customeraddress} Total Price: ${totalprice} 
                           
                           </Text>
                     )
@@ -67,9 +67,10 @@ class GetOrdersScreen extends Component {
   render() {
     if(this.state.isLoading){
       return(
-        <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E"/>
-        </View>
+        <View style={styles.SquareShapeView} >
+        
+        <Text>{this.state.data}</Text>
+          </View>
       )
     }    
     return (
@@ -102,15 +103,14 @@ const styles = StyleSheet.create({
    flex: 1,
    paddingBottom: 22
   },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
+  SquareShapeView: {
+ 
+    width: 400,
+    backgroundColor: '#b0e0e6',
+    justifyContent: 'space-around',
+    fontSize: 16,
+ 
+  },
 })
 
 export default GetOrdersScreen;
