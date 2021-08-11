@@ -35,12 +35,12 @@ class GetDriverScreen extends Component {
             //         });
             //       }}/>
                 //   );
-                 return (<Text key={res.id}  onPress={() => {
+                 return (<Text style={styles.SquareShapeView} key={res.id}  onPress={() => {
                     this.props.navigation.navigate('userdetail', {
                          userkey: res.id
                        });
-                     }}>{name}{email} 
-                          
+                     }}>
+                      Name: {name} Email: {email} Mobile: {mobile}
                           </Text>
                     )
         });
@@ -67,9 +67,13 @@ class GetDriverScreen extends Component {
   render() {
     if(this.state.isLoading){
       return(
-        <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E"/>
-        </View>
+        // <View style={styles.preloader}>
+        //   <ActivityIndicator size="large" color="#9E9E9E"/>
+        // </View>
+        <View style={styles.SquareShapeView} >
+        
+        <Text>{this.state.data}</Text>
+          </View>
       )
     }    
     return (
@@ -109,8 +113,21 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: 'absolute',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+    
+  },
+  SquareShapeView: {
+ 
+    width: 400,
+    backgroundColor: '#b0e0e6',
+    justifyContent: 'space-around',
+    fontSize: 16,
+ 
+  },
+  // Text: {
+  //   fontSize: 25,
+  //   lineHeight: 10,
+  // }
 })
 
 export default GetDriverScreen;
