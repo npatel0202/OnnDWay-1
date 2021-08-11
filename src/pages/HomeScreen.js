@@ -8,11 +8,11 @@ import {
   item,
   Platform,
   ImageBackground,
-  TouchableOpacity
+  TouchableOpacity,
+  Button,
 } from "react-native";
 
 import { FAB } from "react-native-paper";
-//import { MapView } from "expo";
 import "prop-types"; // 15.5.10
 
 export default class HomeScreen extends Component {
@@ -34,38 +34,59 @@ export default class HomeScreen extends Component {
     Linking.openURL(phoneNumber);
   };
 
+  driverCall = () => {
+  this.props.navigation.navigate("GetDriver",{},
+  
+  NavigationActions.navigate({
+    routeName: "GetDriver",})
+    )};
+
+
+orderCall = () => {
+  this.props.navigation.navigate("GetOrders",{},
+  
+  NavigationActions.navigate({
+    routeName: "GetOrders",})
+  
+);
+}
+
   render() {
     return (
-      // <MapView
-      //   style={{
-      //     flex: 1,
-      //     flexDirection: "column",
-      //     justifyContent: "center",
-      //     alignItems: "center",
-      //   }}
-        // initialRegion={{
-        //   latitude: 37.78825,
-        //   longitude: -122.4324,
-        //   latitudeDelta: 0.0922,
-        //   longitudeDelta: 0.0421,
-        // }}
-     // >
      <View>   
          <ImageBackground
 
 source = {require('../images/img.png')}
 style={{resizeMode: "center", width: "100%", height: "90%" }} ></ImageBackground>
-        <FAB
-          style={styles.FAB}
+          <FAB 
+         style={styles.FAB}
           large
-          icon="plus"
+          icon="phone"
           onPress={() => {
             this.dialCall();
           }}
-        />
+        /> 
+        
+       
+<View style={styles.inputs}/>
+              <Button
+              title="Driver List"
+              style={styles.inputs1}
+              //onPress={this.onLogin.bind(this)}
+
+              onPress={() => this.driverCall()}
+              />
+<View style={styles.inputs1}/>
+              <Button
+              title="Order List"
+              style={styles.inputs1}
+              //onPress={this.onLogin.bind(this)}
+
+              onPress={() => this.orderCall()}
+              />
+
         </View>
 
-     // </MapView>
     );
   }
 }
@@ -78,7 +99,7 @@ const styles = StyleSheet.create({
 
   FAB: {
     position: "absolute",
-    marginBottom: 80,
+    marginBottom: 165,
     right: 30,
     bottom: -50,
     marginRight: 10,
@@ -86,5 +107,21 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems:"center",
     justifyContent: "center",
+  },
+  inputs: {
+    height: 45,
+    marginLeft: 16,
+    marginBottom:-20,
+    borderBottomColor: "#FFFFFF",
+    flex: 1,
+    fontSize: 20,
+  },
+  inputs1: {
+    height: 45,
+    marginRight: 16,
+    marginBottom:20,
+    borderBottomColor: "#FFFFFF",
+    flex: 1,
+    fontSize: 20,
   },
 });
