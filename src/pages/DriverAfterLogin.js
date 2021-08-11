@@ -2,13 +2,14 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationActions } from "react-navigation";
 
-
 import {
   View,
   Text,
   Image,
   StyleSheet,
   SafeAreaView,
+  Pressable,
+  Button,
   ImageBackground,
 } from "react-native";
 
@@ -18,11 +19,20 @@ const home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
-        source={require("../images/test.jpg")}
+        source={require("../images/tbay.jpg")}
         style={{ resizeMode: "cover", width: "100%", height: "80%" }}
       >
         <View style={styles.container}>
-          <Text style={styles.title}></Text>
+          <Text style={styles.title}>
+            {/* <Pressable>
+              {({ pressed }) => (
+                <Text style={{ color: "black", fontSize: 35, marginTop: 450 }}>
+                  {pressed ? "Pressed!" : "List of Orders"}
+                </Text>
+              )}
+            </Pressable> */}
+              
+          </Text>
           <View style={styles.contentCenter}>
             <Text style={styles.textStyle}></Text>
           </View>
@@ -37,7 +47,7 @@ const logout = ({ route, navigation }) => {
     "LoginSignup",
     {},
     NavigationActions.navigate({
-      routeName: "Login",
+      routeName: "LoginSignup",
     })
   );
   return null;
