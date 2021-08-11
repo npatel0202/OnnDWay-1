@@ -7,6 +7,7 @@ import {
    Linking,
   item,
   Platform,
+  ImageBackground,
   TouchableOpacity
 } from "react-native";
 
@@ -49,6 +50,11 @@ export default class HomeScreen extends Component {
         //   longitudeDelta: 0.0421,
         // }}
      // >
+     <view>   
+         <ImageBackground
+
+source = {require('../images/img.png')}
+style={{resizeMode: "center", width: "100%", height: "90%" }} ></ImageBackground>
         <FAB
           style={styles.FAB}
           large
@@ -57,6 +63,8 @@ export default class HomeScreen extends Component {
             this.dialCall();
           }}
         />
+        </view>
+
      // </MapView>
     );
   }
