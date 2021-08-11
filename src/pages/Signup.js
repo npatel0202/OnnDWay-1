@@ -49,10 +49,18 @@ export default class SignUpView extends ValidationComponent {
       PickerValue: this.state.PickerValue,
     });
     this.setState({
-      users: "",
+      fullName: "",
+      email: "",
+      password: "",
+      ConfirmPassword: "",
+      MobileNumber: "",
+      PickerValue: "",
+       users: "",
+
     }); 
      
     // Signed in
+
     this.props.navigation.navigate(
       "OnnDWay",
       {},
@@ -60,6 +68,12 @@ export default class SignUpView extends ValidationComponent {
         routeName: "Home",
       })
     );  
+    this.fullNameInput.clear();
+    this.emailInput.clear();
+    this.passwordInput.clear();
+    this.ConfirmPasswordInput.clear();
+    this.MobileNumberInput.clear();
+    this.PickerValueInput.clear();
     // ...
   })
   .catch((error) => {
@@ -117,6 +131,7 @@ export default class SignUpView extends ValidationComponent {
               placeholder="Full name"
               keyboardType="email-address"
               underlineColorAndroid="transparent"
+              ref={input => { this.fullNameInput = input }}
               onChangeText={(fullName) => this.setState({ fullName })}
             />
           </View>
@@ -138,6 +153,7 @@ export default class SignUpView extends ValidationComponent {
               placeholder="Email"
               keyboardType="email-address"
               underlineColorAndroid="transparent"
+              ref={input => { this.emailInput = input }}
               onChangeText={(email) => this.setState({ email })}
             />
           </View>
@@ -158,6 +174,7 @@ export default class SignUpView extends ValidationComponent {
               placeholder="Password"
               secureTextEntry={true}
               underlineColorAndroid="transparent"
+              ref={input => { this.passwordInput = input }}
               onChangeText={(password) => this.setState({ password })}
             />
           </View>
@@ -178,6 +195,7 @@ export default class SignUpView extends ValidationComponent {
               placeholder="Confirm Password"
               secureTextEntry={true}
               underlineColorAndroid="transparent"
+              ref={input => { this.ConfirmPasswordInput = input }}
               onChangeText={(ConfirmPassword) =>
                 this.setState({ ConfirmPassword })
               }
@@ -201,6 +219,7 @@ export default class SignUpView extends ValidationComponent {
               keyboardType="number-pad"
               maxLength={11}
               underlineColorAndroid="transparent"
+              ref={input => { this.MobileNumberInput = input }}
               onChangeText={(MobileNumber) => this.setState({ MobileNumber })}
             />
           </View>
