@@ -11,17 +11,38 @@ import {
   ScrollView,
   FlatList,
   Icon,
+  Button
 } from "react-native";
 import { Header } from "react-native-elements";
 
-export default class SettingsScreen extends Component {
-  render() {
+export default class Logout extends Component {
+  
+
+signOutUser = async () => {
+  try {
+      await firebase.auth().signOut().then(() => {
+        this.props.navigation.navigate(
+          "LoginSignup",
+          {},
+          NavigationActions.navigate({
+            routeName: "Login",
+          })
+        );
+      });
+  } catch (e) {
+      console.log(e);
+  }
+}
+  render() 
+  {
     return (
     <View style={styles.container}>
-      <Text>Settings</Text>
+
+      <Button title="logout" onPress={() => this.signOutUser()} />
     </View>
   )
     }
+    
 }
 
 const styles = StyleSheet.create({

@@ -8,7 +8,9 @@ import React, { Component } from "react";
 import { StyleSheet, View, StatusBar } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator, DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem } from "@react-navigation/drawer";
 import { LogBox } from "react-native";
 LogBox.ignoreLogs(['It appears that you are using old version of react-navigation library. Please update @react-navigation/bottom-tabs, @react-navigation/stack and @react-navigation/drawer to version 5.10.0 or above to take full advantage of new functionality added to react-native-screens',
 "Setting a timer for a long period of time, i.e. multiple minutes, is a performance and correctness issue on Android as it keeps the timer module awake, and timers can only be called when the app is in the foreground. See https://github.com/facebook/react-native/issues/12981 for more info.(Saw setTimeout with duration 2922790ms)"])
@@ -16,7 +18,7 @@ import SignUpView from "./src/pages/Signup";
 import LoginView from "./src/pages/login";
 import HomeScreen from "./src/pages/HomeScreen";
 import OrderScreen from "./src/pages/OrderScreen";
-import SettingsScreen from "./src/pages/SettingsScreen";
+import Logout from "./src/pages/SettingsScreen";
 import DriverScreen from "./src/pages/DriverScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import TabViewComponent from "react-native-elements/dist/tab/TabView";
@@ -29,6 +31,7 @@ import GetOrdersScreen from "./src/pages/GetOrders";
 import OrderDetailScreen from "./src/pages/OrderDetailScreen";
 import DriverLogin from "./src/pages/DriversHomePage";
 import DriverAfterLogin from "./src/pages/DriverAfterLogin";
+//import Logout from "./src/pages/SettingsScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -61,9 +64,10 @@ const LoginSignup = (props) => {
 
 }
 
+
 const OnnDWay = () => {
   return (
-    <Drawer.Navigator initialRouteName="Home" drawerPosition="left">
+    <Drawer.Navigator initialRouteName="Home" drawerPosition="left" >
        {/* tabBarOptions={{
         keyboardHidesTabBar: true,
         labelPosition: "beside-icon",
@@ -88,11 +92,12 @@ const OnnDWay = () => {
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="Driver" component={DriverScreen} />
       <Drawer.Screen name="Order" component={OrderScreen} />
-      <Drawer.Screen name="Settings" component={SettingsScreen} />
       <Drawer.Screen name="Logout" component={Logout} />
-
+      {/* <Drawer.Screen name="Logout" component={Logout}   onPress={() => navigation.navigate('LoginSignup')} /> */}
+ 
       {/* add new here.................................... */}
     </Drawer.Navigator>
+    
   );
 };
 export default function App(props) {
